@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-import Box from '@material-ui/core/Box';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Box from '@mui/material/Box';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
