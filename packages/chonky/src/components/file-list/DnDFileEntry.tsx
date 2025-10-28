@@ -18,9 +18,18 @@ export const DnDFileEntry = React.memo(({ file, children }: DnDFileEntryProps) =
     useDndHoverOpen(file, dndState);
     const classes = useStyles();
     return (
-        <div ref={drop} className={classes.fillParent}>
+        <div
+            ref={el => {
+                if (!el) return;
+                drop(el);
+            }}
+            className={classes.fillParent}
+        >
             <div
-                ref={FileHelper.isDraggable(file) ? drag : null}
+                ref={el => {
+                    if (!el || !FileHelper.isDraggable(file)) return;
+                    drag(el);
+                }}
                 className={classes.fillParent}
             >
                 {children(dndState)}

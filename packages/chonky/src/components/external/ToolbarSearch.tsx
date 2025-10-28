@@ -31,7 +31,7 @@ export const ToolbarSearch: React.FC<ToolbarSearchProps> = React.memo(() => {
     const classes = useStyles();
     const ChonkyIcon = useContext(ChonkyIconContext);
 
-    const searchInputRef = useRef<HTMLInputElement>();
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
     const reduxSearchString = useSelector(selectSearchString);

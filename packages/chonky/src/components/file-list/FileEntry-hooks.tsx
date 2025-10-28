@@ -36,7 +36,7 @@ export const useFileEntryState = (file: Nullable<FileData>, selected: boolean, f
     const { thumbnailUrl, thumbnailLoading } = useThumbnailUrl(file);
 
     return useMemo<FileEntryState>(() => {
-        const fileColor = thumbnailUrl ? ColorsDark[iconData.colorCode] : ColorsLight[iconData.colorCode];
+        const fileColor = thumbnailUrl ? ColorsDark[iconData.colorCode]! : ColorsLight[iconData.colorCode]!;
         const iconSpin = thumbnailLoading || !file;
         const icon = thumbnailLoading ? ChonkyIconName.loading : iconData.icon;
 

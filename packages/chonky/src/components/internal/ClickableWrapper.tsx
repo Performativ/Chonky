@@ -28,7 +28,7 @@ export type KeyboardClickEventHandler = (event: KeyboardClickEvent) => void;
 export interface ClickableWrapperProps {
     wrapperTag: any;
     passthroughProps?: any;
-
+    children?: React.ReactNode;
     onSingleClick?: MouseClickEventHandler;
     onDoubleClick?: MouseClickEventHandler;
     onKeyboardClick?: KeyboardClickEventHandler;

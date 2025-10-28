@@ -39,7 +39,6 @@ export const useParamSelector = <Args extends Array<any>, Value>(
 ) => {
     const selector = useCallback(
         (state: RootState) => parametrizedSelector(...selectorParams)(state),
-        // eslint-disable-next-line
         [parametrizedSelector, ...selectorParams]
     );
     return useSelector(selector);
@@ -49,7 +48,10 @@ export const useParamSelector = <Args extends Array<any>, Value>(
  * DTE - DispatchThunkEffect. This method is used to decrease code duplication in
  * main Chonky method.
  */
-export const useDTE = <Args extends Array<any>>(actionCreator: (...args: Args) => any, ...selectorParams: Args) => {
+export const useDTE = <Args extends Array<any>>(
+    actionCreator: (...args: Args) => any,
+    ...selectorParams: Args
+) => {
     const dispatch = useDispatch();
     useEffect(
         () => {
@@ -60,7 +62,10 @@ export const useDTE = <Args extends Array<any>>(actionCreator: (...args: Args) =
     );
 };
 
-export const usePropReduxUpdate = <Payload extends any>(actionCreator: (payload: Payload) => any, payload: Payload) => {
+export const usePropReduxUpdate = <Payload extends any>(
+    actionCreator: (payload: Payload) => any,
+    payload: Payload
+) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(actionCreator(payload));

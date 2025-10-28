@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { DragSourceMonitor, DropTargetMonitor } from 'react-dnd';
+import { DragLayerMonitor, DragSourceMonitor, DropTargetMonitor } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ExcludeKeys, Nullable } from 'tsdef';
@@ -33,7 +33,7 @@ export const useFileDrag = (file: Nullable<FileData>) => {
         const reduxState = store.getState();
         return {
             sourceInstanceId: selectInstanceId(reduxState),
-            source: selectCurrentFolder(reduxState),
+            source: selectCurrentFolder(reduxState) ?? null,
             // We force non-null type below because by convention, if drag & drop for
             // this file was possible, it must have been non-null.
             draggedFile: fileRef.current!,
@@ -85,8 +85,17 @@ export const useFileDrag = (file: Nullable<FileData>) => {
         }),
         []
     );
-    const collect = useCallback(monitor => ({ isDragging: monitor.isDragging() }), []);
-    const [{ isDragging: dndIsDragging }, drag, preview] = useDragIfAvailable({
+    const collect = useCallback(
+        (monitor: DragLayerMonitor) => ({ isDragging: monitor.isDragging() }),
+        []
+    );
+    const [{ isDragging: dndIsDragging }, drag, preview] = useDragIfAvailable<
+        unknown,
+        unknown,
+        {
+            isDragging: boolean;
+        }
+    >({
         item,
         canDrag,
         begin: onDragStart,
@@ -117,7 +126,7 @@ export const useFileDrop = ({
 }: UseFileDropParams) => {
     const folderChainRef = useInstanceVariable(useSelector(selectFolderChain));
     const onDrop = useCallback(
-        (_item: ChonkyDndFileEntryItem, monitor) => {
+        (_item: ChonkyDndFileEntryItem, monitor: DropTargetMonitor) => {
             if (!monitor.canDrop()) return;
             const customDropResult: ExcludeKeys<ChonkyDndDropResult, 'dropEffect'> = {
                 dropTarget: file,
@@ -157,7 +166,7 @@ export const useFileDrop = ({
         [forceDisableDrop, file, includeChildrenDrops, folderChainRef]
     );
     const collect = useCallback(
-        monitor => ({
+        (monitor: DropTargetMonitor) => ({
             isOver: monitor.isOver(),
             isOverCurrent: monitor.isOver({ shallow: true }),
             canDrop: monitor.canDrop(),

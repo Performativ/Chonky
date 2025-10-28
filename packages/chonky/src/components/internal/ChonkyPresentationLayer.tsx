@@ -22,7 +22,9 @@ import { useContextMenuTrigger } from '../external/FileContextMenu-hooks';
 import { DnDFileListDragLayer } from '../file-list/DnDFileListDragLayer';
 import { HotkeyListener } from './HotkeyListener';
 
-export interface ChonkyPresentationLayerProps {}
+export interface ChonkyPresentationLayerProps {
+    children?: React.ReactNode;
+}
 
 export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = ({
     children,
@@ -36,7 +38,7 @@ export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = (
 
     // Deal with clicks outside of Chonky
     const handleClickAway = useCallback(
-        (event: React.MouseEvent<Document>) => {
+        (event: MouseEvent | TouchEvent) => {
             if (!clearSelectionOnOutsideClick || elementIsInsideButton(event.target)) {
                 // We only clear out the selection on outside click if the click target
                 // was not a button. We don't want to clear out the selection when a

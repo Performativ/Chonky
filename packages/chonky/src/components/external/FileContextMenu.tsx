@@ -45,7 +45,7 @@ export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => 
     const contextMenuItemComponents = useMemo(() => {
         const components: ReactElement[] = [];
         for (let i = 0; i < contextMenuItems.length; ++i) {
-            const item = contextMenuItems[i];
+            const item = contextMenuItems[i]!;
 
             if (typeof item === 'string') {
                 components.push(
