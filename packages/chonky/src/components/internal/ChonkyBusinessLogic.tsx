@@ -75,14 +75,6 @@ export const ChonkyBusinessLogicInner = React.forwardRef<
         )
     );
     useDTE(
-        reduxActions.setDisableDragAndDrop,
-        getValueOrFallback(
-            props.disableDragAndDrop,
-            defaultConfig.disableDragAndDrop,
-            'boolean'
-        )
-    );
-    useDTE(
         reduxActions.setClearSelectionOnOutsideClick,
         getValueOrFallback(
             props.clearSelectionOnOutsideClick,

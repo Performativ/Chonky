@@ -43,7 +43,6 @@ export const initialRootState: RootState = {
 
     thumbnailGenerator: null,
     doubleClickDelay: 300,
-    disableDragAndDrop: false,
     clearSelectionOnOutsideClick: true,
 
     lastClick: null,

@@ -162,9 +162,6 @@ const reducers = {
     setDoubleClickDelay(state: RootState, action: PayloadAction<number>) {
         state.doubleClickDelay = action.payload;
     },
-    setDisableDragAndDrop(state: RootState, action: PayloadAction<boolean>) {
-        state.disableDragAndDrop = action.payload;
-    },
     setClearSelectionOnOutsideClick(state: RootState, action: PayloadAction<boolean>) {
         state.clearSelectionOnOutsideClick = action.payload;
     },
