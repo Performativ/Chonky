@@ -64,7 +64,6 @@ export type RootState = {
     // Other settings
     thumbnailGenerator: Nullable<ThumbnailGenerator>;
     doubleClickDelay: number;
-    disableDragAndDrop: boolean;
     clearSelectionOnOutsideClick: boolean;
 
     // State to use inside effects
@@ -75,6 +74,11 @@ export type RootState = {
     contextMenuConfig: Nullable<ContextMenuConfig>;
 };
 
-export type ChonkyThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>>;
+export type ChonkyThunk<ReturnType = void> = ThunkAction<
+    ReturnType,
+    RootState,
+    null,
+    Action<string>
+>;
 
 export type ChonkyDispatch = ThunkDispatch<RootState, null, Action<string>>;

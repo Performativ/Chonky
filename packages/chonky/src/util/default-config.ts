@@ -10,8 +10,6 @@ export type ChonkyConfig = Pick<
     | 'doubleClickDelay'
     | 'disableSelection'
     | 'disableDefaultFileActions'
-    | 'disableDragAndDrop'
-    | 'disableDragAndDropProvider'
     | 'defaultSortActionId'
     | 'defaultFileViewActionId'
     | 'clearSelectionOnOutsideClick'
@@ -27,8 +25,6 @@ export const defaultConfig: ChonkyConfig = {
     doubleClickDelay: 300,
     disableSelection: false,
     disableDefaultFileActions: false,
-    disableDragAndDrop: false,
-    disableDragAndDropProvider: false,
     defaultSortActionId: ChonkyActions.SortFilesByName.id,
     defaultFileViewActionId: ChonkyActions.EnableGridView.id,
     clearSelectionOnOutsideClick: true,
@@ -38,11 +34,5 @@ export const defaultConfig: ChonkyConfig = {
 };
 
 export const setChonkyDefaults = (config: Partial<ChonkyConfig>) => {
-    for (const key of Object.keys(defaultConfig)) {
-        if (key in config) {
-            defaultConfig[key as keyof ChonkyConfig] = config[
-                key as keyof ChonkyConfig
-            ] as any;
-        }
-    }
+    Object.assign(defaultConfig, config); // Reset to original defaults
 };

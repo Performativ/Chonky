@@ -23,7 +23,7 @@ export const useFolderChainItems = (): FolderChainItem[] => {
         if (!folderChain) return items;
 
         for (let i = 0; i < folderChain.length; ++i) {
-            const file = folderChain[i];
+            const file = folderChain[i]!;
             items.push({
                 file,
                 disabled: !file,

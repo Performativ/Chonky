@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-import Box from '@material-ui/core/Box';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Box from '@mui/material/Box';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,30 +13,28 @@ import { reduxActions } from '../../redux/reducers';
 import {
     selectClearSelectionOnOutsideClick,
     selectFileActionIds,
-    selectIsDnDDisabled,
 } from '../../redux/selectors';
-import { useDndContextAvailable } from '../../util/dnd-fallback';
 import { elementIsInsideButton } from '../../util/helpers';
 import { makeGlobalChonkyStyles } from '../../util/styles';
 import { useContextMenuTrigger } from '../external/FileContextMenu-hooks';
-import { DnDFileListDragLayer } from '../file-list/DnDFileListDragLayer';
 import { HotkeyListener } from './HotkeyListener';
 
-export interface ChonkyPresentationLayerProps {}
+export interface ChonkyPresentationLayerProps {
+    children?: React.ReactNode;
+}
 
 export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = ({
     children,
 }) => {
     const dispatch = useDispatch();
     const fileActionIds = useSelector(selectFileActionIds);
-    const dndDisabled = useSelector(selectIsDnDDisabled);
     const clearSelectionOnOutsideClick = useSelector(
         selectClearSelectionOnOutsideClick
     );
 
     // Deal with clicks outside of Chonky
     const handleClickAway = useCallback(
-        (event: React.MouseEvent<Document>) => {
+        (event: MouseEvent | TouchEvent) => {
             if (!clearSelectionOnOutsideClick || elementIsInsideButton(event.target)) {
                 // We only clear out the selection on outside click if the click target
                 // was not a button. We don't want to clear out the selection when a
@@ -61,14 +59,12 @@ export const ChonkyPresentationLayer: React.FC<ChonkyPresentationLayerProps> = (
         [fileActionIds]
     );
 
-    const dndContextAvailable = useDndContextAvailable();
     const showContextMenu = useContextMenuTrigger();
 
     const classes = useStyles();
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
             <Box className={classes.chonkyRoot} onContextMenu={showContextMenu}>
-                {!dndDisabled && dndContextAvailable && <DnDFileListDragLayer />}
                 {hotkeyListenerComponents}
                 {children ? children : null}
             </Box>

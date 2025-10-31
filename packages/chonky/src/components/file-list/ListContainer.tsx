@@ -4,9 +4,15 @@
  * @license MIT
  */
 
-import React, { CSSProperties, useCallback, useMemo, useRef } from 'react';
+import React, {
+    ComponentType,
+    CSSProperties,
+    useCallback,
+    useMemo,
+    useRef,
+} from 'react';
 import { useSelector } from 'react-redux';
-import { FixedSizeList } from 'react-window';
+import { FixedSizeList as FSL, FixedSizeListProps } from 'react-window';
 
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewMode } from '../../types/file-view.types';
@@ -19,12 +25,20 @@ export interface FileListListProps {
     height: number;
 }
 
+type FSLProps = ComponentType<
+    FixedSizeListProps & {
+        ref?: React.Ref<any>;
+    }
+>;
+
+const FixedSizeList = FSL as FSLProps;
+
 export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
     const { width, height } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
 
-    const listRef = useRef<FixedSizeList>();
+    const listRef = useRef(null);
 
     const displayFileIds = useSelector(selectors.getDisplayFileIds);
     const displayFileIdsRef = useInstanceVariable(displayFileIds);
@@ -50,7 +64,7 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
 
         return (
             <FixedSizeList
-                ref={listRef as any}
+                ref={listRef}
                 className={classes.listContainer}
                 itemSize={viewConfig.entryHeight}
                 height={height}

@@ -37,19 +37,28 @@ const reducers = {
         state.fileActionMap = fileActionMap as FileMap;
         state.fileActionIds = fileIds;
     },
-    updateFileActionMenuItems(state: RootState, action: PayloadAction<[FileActionMenuItem[], FileActionMenuItem[]]>) {
+    updateFileActionMenuItems(
+        state: RootState,
+        action: PayloadAction<[FileActionMenuItem[], FileActionMenuItem[]]>
+    ) {
         [state.toolbarItems, state.contextMenuItems] = action.payload;
     },
     setRawFolderChain(state: RootState, action: PayloadAction<FileArray | any>) {
         const rawFolderChain = action.payload;
-        const { sanitizedArray: folderChain, errorMessages } = sanitizeInputArray('folderChain', rawFolderChain);
+        const { sanitizedArray: folderChain, errorMessages } = sanitizeInputArray(
+            'folderChain',
+            rawFolderChain
+        );
         state.rawFolderChain = rawFolderChain;
         state.folderChain = folderChain;
         state.folderChainErrorMessages = errorMessages;
     },
     setRawFiles(state: RootState, action: PayloadAction<FileArray | any>) {
         const rawFiles = action.payload;
-        const { sanitizedArray: files, errorMessages } = sanitizeInputArray('files', rawFiles);
+        const { sanitizedArray: files, errorMessages } = sanitizeInputArray(
+            'files',
+            rawFiles
+        );
         state.rawFiles = rawFiles;
         state.filesErrorMessages = errorMessages;
 
@@ -92,22 +101,28 @@ const reducers = {
     },
     selectAllFiles(state: RootState) {
         state.fileIds
-            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]))
+            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]!))
             .map(id => (id ? (state.selectionMap[id] = true) : null));
     },
-    selectFiles(state: RootState, action: PayloadAction<{ fileIds: string[]; reset: boolean }>) {
+    selectFiles(
+        state: RootState,
+        action: PayloadAction<{ fileIds: string[]; reset: boolean }>
+    ) {
         if (state.disableSelection) return;
         if (action.payload.reset) state.selectionMap = {};
         action.payload.fileIds
-            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]))
+            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]!))
             .map(id => (state.selectionMap[id] = true));
     },
-    toggleSelection(state: RootState, action: PayloadAction<{ fileId: string; exclusive: boolean }>) {
+    toggleSelection(
+        state: RootState,
+        action: PayloadAction<{ fileId: string; exclusive: boolean }>
+    ) {
         if (state.disableSelection) return;
         const oldValue = !!state.selectionMap[action.payload.fileId];
         if (action.payload.exclusive) state.selectionMap = {};
         if (oldValue) delete state.selectionMap[action.payload.fileId];
-        else if (FileHelper.isSelectable(state.fileMap[action.payload.fileId])) {
+        else if (FileHelper.isSelectable(state.fileMap[action.payload.fileId]!)) {
             state.selectionMap[action.payload.fileId] = true;
         }
     },
@@ -122,7 +137,10 @@ const reducers = {
     setFileViewConfig(state: RootState, action: PayloadAction<FileViewConfig>) {
         state.fileViewConfig = action.payload;
     },
-    setSort(state: RootState, action: PayloadAction<{ actionId: string; order: SortOrder }>) {
+    setSort(
+        state: RootState,
+        action: PayloadAction<{ actionId: string; order: SortOrder }>
+    ) {
         state.sortActionId = action.payload.actionId;
         state.sortOrder = action.payload.order;
     },
@@ -135,19 +153,22 @@ const reducers = {
     toggleOption(state: RootState, action: PayloadAction<string>) {
         state.optionMap[action.payload] = !state.optionMap[action.payload];
     },
-    setThumbnailGenerator(state: RootState, action: PayloadAction<Nullable<ThumbnailGenerator>>) {
+    setThumbnailGenerator(
+        state: RootState,
+        action: PayloadAction<Nullable<ThumbnailGenerator>>
+    ) {
         state.thumbnailGenerator = action.payload;
     },
     setDoubleClickDelay(state: RootState, action: PayloadAction<number>) {
         state.doubleClickDelay = action.payload;
     },
-    setDisableDragAndDrop(state: RootState, action: PayloadAction<boolean>) {
-        state.disableDragAndDrop = action.payload;
-    },
     setClearSelectionOnOutsideClick(state: RootState, action: PayloadAction<boolean>) {
         state.clearSelectionOnOutsideClick = action.payload;
     },
-    setLastClickIndex(state: RootState, action: PayloadAction<Nullable<{ index: number; fileId: string }>>) {
+    setLastClickIndex(
+        state: RootState,
+        action: PayloadAction<Nullable<{ index: number; fileId: string }>>
+    ) {
         state.lastClick = action.payload;
     },
     setContextMenuMounted(state: RootState, action: PayloadAction<boolean>) {

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import React, { useContext } from 'react';
 import { Nullable } from 'tsdef';
 
@@ -125,7 +125,11 @@ export const SmartToolbarButton: React.FC<SmartToolbarButtonProps> = React.memo(
         if (!action) return null;
         const { button } = action;
         if (!button) return null;
-        if (action.customVisibility !== undefined && action.customVisibility() === CustomVisibilityState.Hidden) return null;
+        if (
+            action.customVisibility !== undefined &&
+            action.customVisibility() === CustomVisibilityState.Hidden
+        )
+            return null;
 
         return (
             <ToolbarButton

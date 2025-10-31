@@ -116,13 +116,6 @@ export interface FileBrowserProps {
     disableDragAndDrop?: boolean;
 
     /**
-     * The flag that is used to disable `react-dnd` context provider inside of this
-     * instance of Chonky, while keeping other drag & drop functionality in tact.
-     * Useful when you want to provide your own `react-dnd` context.
-     */
-    disableDragAndDropProvider?: boolean;
-
-    /**
      * The ID of the sort-selector-setting action to activate by default. This field can
      * be used to specify the default sort order in Chonky.
      */

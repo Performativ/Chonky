@@ -1,22 +1,23 @@
 import filesize from 'filesize';
 import { createContext, useContext, useMemo } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
-import { Nullable, Undefinable } from 'tsdef';
+import type { Nullable, Undefinable } from 'tsdef';
 
-import { FileAction } from '../types/action.types';
-import { FileData } from '../types/file.types';
-import { ChonkyFormatters } from '../types/i18n.types';
+import type { FileAction } from '../types/action.types';
+import type { FileData } from '../types/file.types';
+import type { ChonkyFormatters } from '../types/i18n.types';
 import { FileHelper } from './file-helper';
 
-export enum I18nNamespace {
-    Toolbar = 'toolbar',
-    FileList = 'fileList',
-    FileEntry = 'fileEntry',
-    FileContextMenu = 'contextMenu',
+export const I18nNamespace = {
+    Toolbar: 'toolbar',
+    FileList: 'fileList',
+    FileEntry: 'fileEntry',
+    FileContextMenu: 'contextMenu',
+    FileActions: 'actions',
+    FileActionGroups: 'actionGroups',
+} as const
 
-    FileActions = 'actions',
-    FileActionGroups = 'actionGroups',
-}
+export type I18nNamespace = (typeof I18nNamespace)[keyof typeof I18nNamespace];
 
 export const getI18nId = (namespace: I18nNamespace, stringId: string): string =>
     `chonky.${namespace}.${stringId}`;
@@ -83,10 +84,7 @@ export const defaultFormatters: ChonkyFormatters = {
     ): Nullable<string> => {
         const safeModDate = FileHelper.getModDate(file);
         if (safeModDate) {
-            return intl.formatDate(safeModDate, {
-                dateStyle: 'medium',
-                timeStyle: 'short',
-            });
+            return intl.formatDate(safeModDate);
         } else {
             return null;
         }

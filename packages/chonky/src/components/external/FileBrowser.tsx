@@ -1,11 +1,7 @@
-import {
-    createMuiTheme,
-    ThemeProvider as MuiThemeProvider,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+
 import merge from 'deepmerge';
 import React, { ReactNode, useMemo } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from 'react-jss';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -40,16 +36,6 @@ export const FileBrowser = React.forwardRef<
     FileBrowserProps & { children?: ReactNode }
 >((props, ref) => {
     const { instanceId, iconComponent, children } = props;
-    const disableDragAndDrop = getValueOrFallback(
-        props.disableDragAndDrop,
-        defaultConfig.disableDragAndDrop,
-        'boolean'
-    );
-    const disableDragAndDropProvider = getValueOrFallback(
-        props.disableDragAndDropProvider,
-        defaultConfig.disableDragAndDropProvider,
-        'boolean'
-    );
     const darkMode = getValueOrFallback(
         props.darkMode,
         defaultConfig.darkMode,
@@ -65,8 +51,8 @@ export const FileBrowser = React.forwardRef<
 
     const isMobileBreakpoint = useIsMobileBreakpoint();
     const theme = useMemo(() => {
-        const muiTheme = createMuiTheme({
-            palette: { type: darkMode ? 'dark' : 'light' },
+        const muiTheme = createTheme({
+            palette: { mode: darkMode ? 'dark' : 'light' },
         });
         const combinedTheme = merge(
             muiTheme,
@@ -97,13 +83,7 @@ export const FileBrowser = React.forwardRef<
                                     ChonkyIconPlaceholder
                                 }
                             >
-                                {disableDragAndDrop || disableDragAndDropProvider ? (
-                                    chonkyComps
-                                ) : (
-                                    <DndProvider backend={HTML5Backend}>
-                                        {chonkyComps}
-                                    </DndProvider>
-                                )}
+                                {chonkyComps}
                             </ChonkyIconContext.Provider>
                         </MuiThemeProvider>
                     </ThemeProvider>

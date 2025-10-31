@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-import Box from '@material-ui/core/Box';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Box from '@mui/material/Box';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import React, { ReactElement, useMemo } from 'react';
 
 import { ChonkyActions } from '../../action-definitions/index';
@@ -29,7 +29,7 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
                     key={key}
                     first={i === 0}
                     current={i === folderChainItems.length - 1}
-                    item={folderChainItems[i]}
+                    item={folderChainItems[i]!}
                 />
             );
             components.push(component);
