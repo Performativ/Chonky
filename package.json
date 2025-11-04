@@ -21,6 +21,7 @@
         "size": "size-limit",
         "analyze": "size-limit --why"
     },
+    "packageManager": "pnpm@10.20.0",
     "peerDependencies": {
         "react": ">=18"
     },
