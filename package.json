@@ -2,6 +2,7 @@
     "name": "chonky",
     "version": "2.3.2",
     "description": "A File Browser component for React",
+    "type": "module",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
