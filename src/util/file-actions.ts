@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Nullable } from 'tsdef';
 
 import { ChonkyActions } from '../action-definitions/index';
@@ -18,14 +18,15 @@ import { ChonkyIconName } from '../types/icons.types';
 import { CustomVisibilityState } from '../types/action.types';
 import { SortOrder } from '../types/sort.types';
 import { FileHelper } from './file-helper';
+import { useThunkDispatch } from '../redux/helpers';
 
 export const useFileActionTrigger = (fileActionId: string) => {
-    const dispatch = useDispatch();
+    const dispatch = useThunkDispatch();
     const fileAction = useParamSelector(selectFileActionData, fileActionId);
-    return useCallback(() => dispatch(thunkRequestFileAction(fileAction, undefined)), [
-        dispatch,
-        fileAction,
-    ]);
+    return useCallback(
+        () => dispatch(thunkRequestFileAction(fileAction, undefined)),
+        [dispatch, fileAction]
+    );
 };
 
 export const useFileActionProps = (
@@ -38,8 +39,7 @@ export const useFileActionProps = (
     const sortOrder = useSelector(selectSortOrder);
 
     const action = useParamSelector(selectFileActionData, fileActionId);
-    // @ts-ignore
-    const optionValue = useParamSelector(selectOptionValue, action?.option?.id);
+    const optionValue = useParamSelector(selectOptionValue, action?.option?.id ?? '');
 
     const actionSelectionSize = useParamSelector(
         selectSelectedFilesForActionCount,
@@ -77,7 +77,8 @@ export const useFileActionProps = (
         let customDisabled = false;
         let customActive = false;
         if (action.customVisibility !== undefined) {
-            customDisabled = action.customVisibility() === CustomVisibilityState.Disabled;
+            customDisabled =
+                action.customVisibility() === CustomVisibilityState.Disabled;
             customActive = action.customVisibility() === CustomVisibilityState.Active;
         }
         const active =
@@ -85,8 +86,9 @@ export const useFileActionProps = (
             isFileViewButtonAndCurrentView ||
             isOptionAndEnabled ||
             customActive;
-        
-        let disabled: boolean = (!!action.requiresSelection && actionSelectionEmpty) || customDisabled;
+
+        let disabled: boolean =
+            (!!action.requiresSelection && actionSelectionEmpty) || customDisabled;
 
         if (action.id === ChonkyActions.OpenParentFolder.id) {
             // We treat `open_parent_folder` file action as a special case as it

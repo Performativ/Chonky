@@ -18,9 +18,7 @@ import { important, makeGlobalChonkyStyles } from '../../util/styles';
 import { useContextMenuDismisser } from './FileContextMenu-hooks';
 import { SmartToolbarDropdownButton } from './ToolbarDropdownButton';
 
-export interface FileContextMenuProps {}
-
-export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => {
+export const FileContextMenu: React.FC = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(reduxActions.setContextMenuMounted(true));
@@ -56,7 +54,7 @@ export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => 
                     />
                 );
             } else {
-                item.fileActionIds.map(id =>
+                item.fileActionIds.map((id) =>
                     components.push(
                         <SmartToolbarDropdownButton
                             key={`context-menu-item-${item.name}-${id}`}
@@ -96,7 +94,7 @@ export const FileContextMenu: React.FC<FileContextMenuProps> = React.memo(() => 
             </ListSubheader>
         </Menu>
     );
-});
+};
 
 const useStyles = makeGlobalChonkyStyles(() => ({
     contextMenuList: {

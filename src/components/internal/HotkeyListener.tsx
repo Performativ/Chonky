@@ -6,20 +6,20 @@
 
 import hotkeys from 'hotkeys-js';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
+import { useThunkDispatch } from '../../redux/helpers';
 
 export interface HotkeyListenerProps {
     fileActionId: string;
 }
 
-export const HotkeyListener: React.FC<HotkeyListenerProps> = React.memo(props => {
+export const HotkeyListener: React.FC<HotkeyListenerProps> = (props) => {
     const { fileActionId } = props;
 
-    const dispatch = useDispatch();
+    const dispatch = useThunkDispatch();
     const fileAction = useParamSelector(selectFileActionData, fileActionId);
 
     useEffect(() => {
@@ -37,4 +37,4 @@ export const HotkeyListener: React.FC<HotkeyListenerProps> = React.memo(props =>
     }, [dispatch, fileAction]);
 
     return null;
-});
+};

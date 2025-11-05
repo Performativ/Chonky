@@ -8,6 +8,7 @@ import { selectContextMenuMounted } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { findElementAmongAncestors } from '../../util/helpers';
 import { useInstanceVariable } from '../../util/hooks-helpers';
+import { useThunkDispatch } from '../../redux/helpers';
 
 export const findClosestChonkyFileId = (
     element: HTMLElement | any
@@ -24,7 +25,7 @@ export const findClosestChonkyFileId = (
 };
 
 export const useContextMenuTrigger = () => {
-    const dispatch = useDispatch();
+    const dispatch = useThunkDispatch();
     const contextMenuMountedRef = useInstanceVariable(
         useSelector(selectContextMenuMounted)
     );

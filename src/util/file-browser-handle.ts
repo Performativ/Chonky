@@ -1,6 +1,7 @@
 import React, { useImperativeHandle } from 'react';
-import { useDispatch, useStore } from 'react-redux';
+import { useStore } from 'react-redux';
 
+import { useThunkDispatch } from '../redux/helpers';
 import { reduxActions } from '../redux/reducers';
 import { selectSelectionMap } from '../redux/selectors';
 import { thunkRequestFileAction } from '../redux/thunks/dispatchers.thunks';
@@ -10,7 +11,7 @@ import { RootState } from '../types/redux.types';
 
 export const useFileBrowserHandle = (ref: React.Ref<FileBrowserHandle>) => {
     const store = useStore<RootState>();
-    const dispatch = useDispatch();
+    const dispatch = useThunkDispatch();
 
     useImperativeHandle(
         ref,

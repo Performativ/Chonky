@@ -1,4 +1,4 @@
-import React, {
+import {
     HTMLProps,
     useCallback,
     useContext,
@@ -7,10 +7,11 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Nullable, Undefinable } from 'tsdef';
 
 import { ChonkyActions } from '../../action-definitions/index';
+import { useThunkDispatch } from '../../redux/helpers';
 import { selectThumbnailGenerator } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { FileData } from '../../types/file.types';
@@ -153,7 +154,7 @@ export const useThumbnailUrl = (file: Nullable<FileData>) => {
                             setThumbnailUrl(thumbnailUrl);
                         }
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         if (!loadingCancelled) setThumbnailLoading(false);
                         Logger.error(
                             `User-defined "thumbnailGenerator" handler threw an error: ${error.message}`
@@ -176,7 +177,7 @@ export const useFileClickHandlers = (
     file: Nullable<FileData>,
     displayIndex: number
 ) => {
-    const dispatch = useDispatch();
+    const dispatch = useThunkDispatch();
 
     // Prepare base handlers
     const onMouseClick = useCallback(
