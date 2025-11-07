@@ -63,17 +63,6 @@ export enum ChonkyIconName {
     terminal = 'terminal',
     users = 'users',
 
-    // OS file types
-    linux = 'linux',
-    ubuntu = 'ubuntu',
-    windows = 'windows',
-
-    // Programming language file types
-    rust = 'rust',
-    python = 'python',
-    nodejs = 'nodejs',
-    php = 'php',
-
     // Development tools file types
     git = 'git',
 

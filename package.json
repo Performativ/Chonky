@@ -15,6 +15,7 @@
     },
     "scripts": {
         "start": "tsup --watch",
+        "dev": "vite",
         "build": "tsup && tsc -b",
         "test": "vitest",
         "lint": "eslint src",
@@ -52,6 +53,7 @@
         "@testing-library/react": "^16.3.0",
         "@types/react": "^19.0.1",
         "@types/react-dom": "^19.0.1",
+        "@vitejs/plugin-react": "^5.1.0",
         "babel-loader": "^8.2.2",
         "eslint": "^9.39.1",
         "eslint-plugin-react": "^7.37.5",
@@ -68,6 +70,7 @@
         "tsup": "^8.5.0",
         "typescript": "^5",
         "typescript-eslint": "^8.46.3",
+        "vite": "^7.2.2",
         "vitest": "^4.0.6"
     },
     "dependencies": {
@@ -91,6 +94,7 @@
         "filesize": "^6.1.0",
         "fuzzy-search": "^3.2.1",
         "hotkeys-js": "^3.8.3",
+        "lucide-react": "^0.552.0",
         "react-dnd": "16.0.1",
         "react-dnd-html5-backend": "16.0.1",
         "react-intl": "^7.1.14",

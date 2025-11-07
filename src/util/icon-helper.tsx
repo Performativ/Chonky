@@ -4,18 +4,72 @@
  * @license MIT
  */
 
-import { createContext, ElementType, useMemo } from 'react';
-
 import ExactTrie from 'exact-trie';
+import React, { createContext, ElementType, useMemo } from 'react';
+import cn from 'classnames';
 import { Nullable } from 'tsdef';
 
+import {
+    LucideArchive,
+    LucideArrowDown,
+    LucideBox,
+    LucideChevronDown,
+    LucideChevronRight,
+    LucideClipboardPaste,
+    LucideCog,
+    LucideCopy,
+    LucideCornerRightUp,
+    LucideDatabase,
+    LucideDownload,
+    LucideEraser,
+    LucideEyeClosed,
+    LucideFile,
+    LucideFileCode,
+    LucideFileImage,
+    LucideFileSymlink,
+    LucideFileText,
+    LucideFilm,
+    LucideFlashlight,
+    LucideFolder,
+    LucideFolderOpen,
+    LucideFolderPlus,
+    LucideGrid2X2,
+    LucideGrid3X3,
+    LucideGroup,
+    LucideHandFist,
+    LucideInfo,
+    LucideKey,
+    LucideList,
+    LucideLoaderCircle,
+    LucideLock,
+    LucideMinus,
+    LucideMusic,
+    LucideOctagonAlert,
+    LucidePackage,
+    LucideProps,
+    LucideScale,
+    LucideSearch,
+    LucideShare2,
+    LucideSheet,
+    LucideSortAsc,
+    LucideSortDesc,
+    LucideTable,
+    LucideTerminal,
+    LucideText,
+    LucideToggleLeft,
+    LucideToggleRight,
+    LucideTrash,
+    LucideUpload,
+    LucideUsers,
+    LucideX,
+} from 'lucide-react';
 import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlaceholder';
 import { FileData } from '../types/file.types';
 import { ChonkyIconName, ChonkyIconProps, FileIconData } from '../types/icons.types';
+import { makeLocalChonkyStyles } from './styles';
 
-export const ChonkyIconContext = createContext<ElementType<ChonkyIconProps>>(
-    ChonkyIconPlaceholder
-);
+export const ChonkyIconContext =
+    createContext<ElementType<ChonkyIconProps>>(ChonkyIconPlaceholder);
 
 export const VideoExtensions: string[] = [
     '3g2',
@@ -426,17 +480,6 @@ const getIconTrie = () => {
         [ChonkyIconName.trash, ['.Trashes']],
         [ChonkyIconName.users, ['authors', 'contributors']],
 
-        // OS file types
-        [ChonkyIconName.linux, ['AppImage']],
-        [ChonkyIconName.ubuntu, ['deb']],
-        [ChonkyIconName.windows, ['exe']],
-
-        // Programming language file types
-        [ChonkyIconName.rust, ['rs', 'rlib']],
-        [ChonkyIconName.python, ['py', 'ipynb']],
-        [ChonkyIconName.nodejs, ['js', 'jsx', 'ts', 'tsx', 'd.ts']],
-        [ChonkyIconName.php, ['php']],
-
         // Development tools file types
         [ChonkyIconName.git, ['.gitignore']],
 
@@ -478,4 +521,99 @@ export const useIconData = (file: Nullable<FileData>): FileIconData => {
         const match = iconTrie.getWithCheckpoints(file.name, '.', true);
         return match ? match : { icon: ChonkyIconName.file, colorCode: 32 };
     }, [file]);
+};
+
+const IconMap: {
+    [iconName in ChonkyIconName]: React.ForwardRefExoticComponent<
+        Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
+    >;
+} = {
+    // Misc
+    [ChonkyIconName.loading]: LucideLoaderCircle,
+    [ChonkyIconName.dropdown]: LucideChevronDown,
+    [ChonkyIconName.placeholder]: LucideMinus,
+
+    // File Actions: Drag & drop
+    [ChonkyIconName.dndDragging]: LucideHandFist,
+    [ChonkyIconName.dndCanDrop]: LucideArrowDown,
+    [ChonkyIconName.dndCannotDrop]: LucideX,
+
+    // File Actions: File operations
+    [ChonkyIconName.openFiles]: LucideBox,
+    [ChonkyIconName.openParentFolder]: LucideCornerRightUp,
+    [ChonkyIconName.copy]: LucideCopy,
+    [ChonkyIconName.paste]: LucideClipboardPaste,
+    [ChonkyIconName.share]: LucideShare2,
+    [ChonkyIconName.search]: LucideSearch,
+    [ChonkyIconName.selectAllFiles]: LucideGroup,
+    [ChonkyIconName.clearSelection]: LucideEraser,
+
+    // File Actions: Sorting & options
+    [ChonkyIconName.sortAsc]: LucideSortAsc,
+    [ChonkyIconName.sortDesc]: LucideSortDesc,
+    [ChonkyIconName.toggleOn]: LucideToggleRight,
+    [ChonkyIconName.toggleOff]: LucideToggleLeft,
+
+    // File Actions: File Views
+    [ChonkyIconName.list]: LucideList,
+    [ChonkyIconName.compact]: LucideTable,
+    [ChonkyIconName.smallThumbnail]: LucideGrid3X3,
+    [ChonkyIconName.largeThumbnail]: LucideGrid2X2,
+
+    // File Actions: Unsorted
+    [ChonkyIconName.folder]: LucideFolder,
+    [ChonkyIconName.folderCreate]: LucideFolderPlus,
+    [ChonkyIconName.folderOpen]: LucideFolderOpen,
+    [ChonkyIconName.folderChainSeparator]: LucideChevronRight,
+    [ChonkyIconName.download]: LucideDownload,
+    [ChonkyIconName.upload]: LucideUpload,
+    [ChonkyIconName.trash]: LucideTrash,
+    [ChonkyIconName.fallbackIcon]: LucideOctagonAlert,
+
+    // File modifiers
+    [ChonkyIconName.symlink]: LucideFileSymlink,
+    [ChonkyIconName.hidden]: LucideEyeClosed,
+
+    // Generic file types
+    [ChonkyIconName.file]: LucideFile,
+    [ChonkyIconName.license]: LucideScale,
+    [ChonkyIconName.code]: LucideFileCode,
+    [ChonkyIconName.config]: LucideCog,
+    [ChonkyIconName.model]: LucidePackage,
+    [ChonkyIconName.database]: LucideDatabase,
+    [ChonkyIconName.text]: LucideText,
+    [ChonkyIconName.archive]: LucideArchive,
+    [ChonkyIconName.image]: LucideFileImage,
+    [ChonkyIconName.video]: LucideFilm,
+    [ChonkyIconName.info]: LucideInfo,
+    [ChonkyIconName.key]: LucideKey,
+    [ChonkyIconName.lock]: LucideLock,
+    [ChonkyIconName.music]: LucideMusic,
+    [ChonkyIconName.terminal]: LucideTerminal,
+    [ChonkyIconName.users]: LucideUsers,
+
+    // Development tools file types
+    [ChonkyIconName.git]: LucideFolder,
+
+    // Brands file types
+    [ChonkyIconName.adobe]: LucideFileText,
+
+    // Other program file types
+    [ChonkyIconName.pdf]: LucideFileText,
+    [ChonkyIconName.excel]: LucideSheet,
+    [ChonkyIconName.word]: LucideFile,
+    [ChonkyIconName.flash]: LucideFlashlight,
+} as const;
+
+const useStyles = makeLocalChonkyStyles(() => ({
+    icon: {
+        display: 'inline-block',
+        verticalAlign: 'middle',
+    },
+}));
+
+export const ChonkyIconFA: React.FC<ChonkyIconProps> = ({ icon, className, style }) => {
+    const Icon = IconMap[icon as keyof typeof IconMap] || ChonkyIconPlaceholder;
+    const classes = useStyles();
+    return <Icon size={16} className={cn(classes.icon, className)} style={style} />;
 };
