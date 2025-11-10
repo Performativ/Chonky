@@ -1,37 +1,55 @@
-import { GenericFileActionHandler, MapFileActionsToData } from './types/action-handler.types';
-import { ChonkyActionUnion } from './types/file-browser.types';
+import type {
+    GenericFileActionHandler,
+    MapFileActionsToData,
+} from './types/action-handler.types';
+import type { ChonkyActionUnion } from './types/file-browser.types';
 
 export { FileBrowser } from './components/external/FileBrowser';
+export { FileContextMenu } from './components/external/FileContextMenu';
 export { FileNavbar } from './components/external/FileNavbar';
 export { FileToolbar } from './components/external/FileToolbar';
-export { FileList } from './components/file-list/FileList';
-export { FileContextMenu } from './components/external/FileContextMenu';
 export { FullFileBrowser } from './components/external/FullFileBrowser';
+export { FileList } from './components/file-list/FileList';
 
 export { ChonkyActions, DefaultFileActions, OptionIds } from './action-definitions';
 export { defineFileAction } from './util/helpers';
 
-export { FileHelper } from './util/file-helper';
-export type { FileData, FileArray } from './types/file.types';
-export type { FileAction, FileActionEffect, FileSelectionTransform, FileActionButton, CustomVisibilityState } from './types/action.types';
 export type {
-    GenericFileActionHandler,
-    MapFileActionsToData,
     FileActionData,
     FileActionState,
+    GenericFileActionHandler,
+    MapFileActionsToData,
 } from './types/action-handler.types';
-export type { ChonkyActionUnion } from './types/file-browser.types';
-export { ChonkyIconName } from './types/icons.types';
-export type ChonkyIconProps = import('./types/icons.types').ChonkyIconProps;
-export type { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
-export { FileViewMode } from './types/file-view.types';
-export type FileViewConfig = import('./types/file-view.types').FileViewConfig;
-export type FileViewConfigGrid = import('./types/file-view.types').FileViewConfigGrid;
-export type FileViewConfigList = import('./types/file-view.types').FileViewConfigList;
+export {
+    CustomVisibilityState,
+    type FileAction,
+    type FileActionButton,
+    type FileActionEffect,
+    type FileSelectionTransform,
+} from './types/action.types';
+export type {
+    ChonkyActionUnion,
+    FileBrowserHandle,
+    FileBrowserProps,
+} from './types/file-browser.types';
+export {
+    FileViewMode,
+    type FileViewConfig,
+    type FileViewConfigGrid,
+    type FileViewConfigList,
+} from './types/file-view.types';
+export type { FileArray, FileData } from './types/file.types';
+export { ChonkyIconName, type ChonkyIconProps } from './types/icons.types';
 export type { ThumbnailGenerator } from './types/thumbnails.types';
+export { FileHelper } from './util/file-helper';
 
-export type { I18nConfig, ChonkyFormatters } from './types/i18n.types';
-export { defaultFormatters, getI18nId, getActionI18nId, I18nNamespace } from './util/i18n';
+export type { ChonkyFormatters, I18nConfig } from './types/i18n.types';
+export {
+    defaultFormatters,
+    getActionI18nId,
+    getI18nId,
+    I18nNamespace,
+} from './util/i18n';
 
 export { setChonkyDefaults } from './util/default-config';
 
@@ -43,6 +61,9 @@ export * from './extensions';
 
 // Redux/Store
 export * from './redux/reducers';
-export * from './redux/store';
 export * from './redux/selectors';
-export { thunkDispatchFileAction, thunkRequestFileAction } from './redux/thunks/dispatchers.thunks';
+export * from './redux/store';
+export {
+    thunkDispatchFileAction,
+    thunkRequestFileAction,
+} from './redux/thunks/dispatchers.thunks';
