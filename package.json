@@ -65,7 +65,6 @@
         "react-dom": "^19.0.1",
         "react-is": "^19.0.1",
         "size-limit": "^4.10.1",
-        "tsdx": "^0.14.1",
         "tslib": "^2.1.0",
         "tsup": "^8.5.0",
         "typescript": "^5",
