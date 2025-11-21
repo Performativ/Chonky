@@ -1,3 +1,34 @@
+# Chonky
+
+Fork of [Chonky](https://www.npmjs.com/package/chonky) by [Tim Kuzhagaliyev](https://github.com/TimboKZ). Modernized to React 19. No found bugs yet.
+
+## Changes
+
+Converted lerna monorepo to just chonky, removed chonky icons and storybook.
+
+- Upgraded core dependencies:
+    - `react`
+    - `react-dom`
+    - `typescript`
+    - `redux`
+    - `react-redux`
+    - `material-ui`
+- Removed libraries
+    - `react-dnd` - React DnD is completely removed
+- Replaced libraies
+    - `tsdx` -> `tsup`, `eslint`, `vitest`
+
+## Remaining work
+
+- Update `react-window` to latest version (v2)
+- Replace `react-dnd` with a more updated library
+
+## Functionality
+
+It should function the same as the original chonky without the ability to do drag-and-drop.
+
+# Original README
+
 <p align="center">
     <img src="https://chonky.io/chonky-logo-v2.png" alt="Chonky v2 Logo" width="500" />
     <br />
