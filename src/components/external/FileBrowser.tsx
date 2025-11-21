@@ -24,13 +24,6 @@ import { ChonkyBusinessLogic } from '../internal/ChonkyBusinessLogic';
 import { ChonkyIconPlaceholder } from '../internal/ChonkyIconPlaceholder';
 import { ChonkyPresentationLayer } from '../internal/ChonkyPresentationLayer';
 
-// if (process.env.NODE_ENV === 'development') {
-//     const whyDidYouRender = require('@welldone-software/why-did-you-render');
-//     whyDidYouRender(React, {
-//         trackAllPureComponents: true,
-//     });
-// }
-
 export const FileBrowser = React.forwardRef<
     FileBrowserHandle,
     FileBrowserProps & { children?: ReactNode }
@@ -42,9 +35,10 @@ export const FileBrowser = React.forwardRef<
         'boolean'
     );
     const i18n = getValueOrFallback(props.i18n, defaultConfig.i18n);
-    const formatters = useMemo(() => ({ ...defaultFormatters, ...i18n?.formatters }), [
-        i18n,
-    ]);
+    const formatters = useMemo(
+        () => ({ ...defaultFormatters, ...i18n?.formatters }),
+        [i18n]
+    );
 
     const chonkyInstanceId = useStaticValue(() => instanceId ?? shortid.generate());
     const store = useChonkyStore(chonkyInstanceId);
