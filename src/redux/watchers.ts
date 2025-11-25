@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import watch from 'redux-watch';
 
-import { Store } from '@reduxjs/toolkit';
+import type { Store } from '@reduxjs/toolkit';
 
 import { ChonkyActions } from '../action-definitions';
-import { RootState } from '../types/redux.types';
-import { FileSelection } from '../types/selection.types';
+import type { RootState } from '../types/redux.types';
+import type { FileSelection } from '../types/selection.types';
 import { selectSelectedFileIds, selectSelectionMap } from './selectors';
 import { thunkRequestFileAction } from './thunks/dispatchers.thunks';
 

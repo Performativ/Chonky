@@ -5,9 +5,9 @@
  */
 
 import React from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
-import { FileData } from '../../types/file.types';
+import type { FileData } from '../../types/file.types';
 import { makeLocalChonkyStyles } from '../../util/styles';
 import { useFileNameComponent, useModifierIconComponents } from './FileEntry-hooks';
 
@@ -16,7 +16,7 @@ export interface FileEntryNameProps {
     className?: string;
 }
 
-export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, className }) => {
+export const FileEntryName: React.FC<FileEntryNameProps> = ({ file, className }) => {
     const modifierIconComponents = useModifierIconComponents(file);
     const fileNameComponent = useFileNameComponent(file);
 
@@ -29,10 +29,11 @@ export const FileEntryName: React.FC<FileEntryNameProps> = React.memo(({ file, c
             {fileNameComponent}
         </span>
     );
-});
+};
+
 FileEntryName.displayName = 'FileEntryName';
 
-const useStyles = makeLocalChonkyStyles(theme => ({
+const useStyles = makeLocalChonkyStyles((theme) => ({
     modifierIcons: {
         color: theme.palette.text.secondary,
         position: 'relative',

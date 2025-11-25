@@ -5,7 +5,7 @@
  */
 
 import React, { useContext } from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { ChonkyIconName } from '../../types/icons.types';
 import { ChonkyIconContext } from '../../util/icon-helper';
@@ -29,7 +29,7 @@ export interface FileEntryPreviewProps {
 }
 
 export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.memo(
-    props => {
+    (props) => {
         const { className: externalClassName, entryState } = props;
 
         const folderClasses = useFolderStyles(entryState);
@@ -65,7 +65,7 @@ export const GridEntryPreviewFolder: React.FC<FileEntryPreviewProps> = React.mem
 );
 GridEntryPreviewFolder.displayName = 'GridEntryPreviewFolder';
 
-const useFolderStyles = makeLocalChonkyStyles(theme => ({
+const useFolderStyles = makeLocalChonkyStyles((theme) => ({
     previewFile: {
         borderRadius: theme.gridFileEntry.borderRadius,
         position: 'relative',
@@ -140,7 +140,7 @@ const useFolderStyles = makeLocalChonkyStyles(theme => ({
 }));
 
 export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
-    props => {
+    (props) => {
         const { className: externalClassName, entryState } = props;
 
         const fileClasses = useFileStyles(entryState);
@@ -166,7 +166,7 @@ export const GridEntryPreviewFile: React.FC<FileEntryPreviewProps> = React.memo(
 );
 GridEntryPreviewFile.displayName = 'GridEntryPreviewFile';
 
-const useFileStyles = makeLocalChonkyStyles(theme => ({
+const useFileStyles = makeLocalChonkyStyles((theme) => ({
     previewFile: {
         boxShadow: (state: FileEntryState) => {
             const shadows: string[] = [];

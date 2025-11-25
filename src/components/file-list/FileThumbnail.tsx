@@ -4,9 +4,8 @@
  * @license MIT
  */
 
-import c from 'classnames';
 import React from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { makeGlobalChonkyStyles } from '../../util/styles';
 import classNames from 'classnames';
@@ -16,7 +15,7 @@ export interface FileThumbnailProps {
     thumbnailUrl: Nullable<string>;
 }
 
-export const FileThumbnail: React.FC<FileThumbnailProps> = React.memo(props => {
+export const FileThumbnail: React.FC<FileThumbnailProps> = (props) => {
     const { className, thumbnailUrl } = props;
 
     const thumbnailStyle: React.CSSProperties = thumbnailUrl
@@ -30,7 +29,7 @@ export const FileThumbnail: React.FC<FileThumbnailProps> = React.memo(props => {
             style={thumbnailStyle}
         />
     );
-});
+};
 FileThumbnail.displayName = 'FileThumbnail';
 
 const useStyles = makeGlobalChonkyStyles(() => ({

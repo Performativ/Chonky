@@ -1,6 +1,6 @@
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
-import { FileData } from './file.types';
+import type { FileData } from './file.types';
 
 export interface FileEntryProps {
     file: Nullable<FileData>;

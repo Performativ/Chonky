@@ -5,7 +5,7 @@
  */
 
 import React, {
-    CSSProperties,
+    type CSSProperties,
     useCallback,
     useEffect,
     useMemo,
@@ -13,10 +13,10 @@ import React, {
     useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { VariableSizeGrid as VSG, VariableSizeGridProps } from 'react-window';
+import { VariableSizeGrid as VSG, type VariableSizeGridProps } from 'react-window';
 
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
-import { FileViewConfigGrid } from '../../types/file-view.types';
+import type { FileViewConfigGrid } from '../../types/file-view.types';
 import { useInstanceVariable } from '../../util/hooks-helpers';
 import { makeGlobalChonkyStyles, useIsMobileBreakpoint } from '../../util/styles';
 import { SmartFileEntry } from './FileEntry';
@@ -81,7 +81,7 @@ export const getGridConfig = (
     };
 };
 
-export const GridContainer: React.FC<FileListGridProps> = React.memo(props => {
+export const GridContainer: React.FC<FileListGridProps> = React.memo((props) => {
     const { width, height } = props;
 
     const viewConfig = useSelector(selectFileViewConfig) as FileViewConfigGrid;

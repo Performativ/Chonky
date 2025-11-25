@@ -5,14 +5,14 @@
  */
 
 import React, {
-    ComponentType,
-    CSSProperties,
+    type ComponentType,
+    type CSSProperties,
     useCallback,
     useMemo,
     useRef,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { FixedSizeList as FSL, FixedSizeListProps } from 'react-window';
+import { FixedSizeList as FSL, type FixedSizeListProps } from 'react-window';
 
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewMode } from '../../types/file-view.types';
@@ -33,7 +33,7 @@ type FSLProps = ComponentType<
 
 const FixedSizeList = FSL as FSLProps;
 
-export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
+export const ListContainer: React.FC<FileListListProps> = (props) => {
     const { width, height } = props;
 
     const viewConfig = useSelector(selectFileViewConfig);
@@ -85,9 +85,9 @@ export const ListContainer: React.FC<FileListListProps> = React.memo(props => {
     ]);
 
     return listComponent;
-});
+};
 
-const useStyles = makeLocalChonkyStyles(theme => ({
+const useStyles = makeLocalChonkyStyles((theme) => ({
     listContainer: {
         borderTop: `solid 1px ${theme.palette.divider}`,
     },

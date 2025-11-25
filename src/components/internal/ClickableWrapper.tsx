@@ -5,7 +5,7 @@
  */
 
 import React, { useCallback } from 'react';
-import { AnyObjectWithStringKeys } from 'tsdef';
+import type { AnyObjectWithStringKeys } from 'tsdef';
 
 import { useClickHandler, useKeyDownHandler } from './ClickableWrapper-hooks';
 
@@ -35,7 +35,7 @@ export interface ClickableWrapperProps {
     setFocused?: (focused: boolean) => void;
 }
 
-export const ClickableWrapper: React.FC<ClickableWrapperProps> = props => {
+export const ClickableWrapper: React.FC<ClickableWrapperProps> = (props) => {
     const {
         children,
         wrapperTag: WrapperTag,

@@ -1,78 +1,74 @@
 import React, { useContext, useMemo } from 'react';
 
-import { FileEntryProps } from '../../types/file-list.types';
+import type { FileEntryProps } from '../../types/file-list.types';
 import { useLocalizedFileEntryStrings } from '../../util/i18n';
 import { ChonkyIconContext } from '../../util/icon-helper';
 import { makeLocalChonkyStyles } from '../../util/styles';
 import { TextPlaceholder } from '../external/TextPlaceholder';
 import { useFileEntryHtmlProps, useFileEntryState } from './FileEntry-hooks';
 import { FileEntryName } from './FileEntryName';
-import { FileEntryState, useCommonEntryStyles } from './GridEntryPreview';
+import { type FileEntryState, useCommonEntryStyles } from './GridEntryPreview';
 import classNames from 'classnames';
 
 interface StyleState {
     entryState: FileEntryState;
 }
 
-export const ListEntry: React.FC<FileEntryProps> = React.memo(
-    ({ file, selected, focused }) => {
-        const entryState: FileEntryState = useFileEntryState(file, selected, focused);
+export const ListEntry: React.FC<FileEntryProps> = ({ file, selected, focused }) => {
+    const entryState: FileEntryState = useFileEntryState(file, selected, focused);
 
-        const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(
-            file
-        );
-        const styleState = useMemo<StyleState>(
-            () => ({
-                entryState,
-            }),
-            [entryState]
-        );
-        const classes = useStyles(styleState);
-        const commonClasses = useCommonEntryStyles(entryState);
-        const ChonkyIcon = useContext(ChonkyIconContext);
-        const fileEntryHtmlProps = useFileEntryHtmlProps(file);
-        return (
-            <div className={classes.listFileEntry} {...fileEntryHtmlProps}>
-                <div className={commonClasses.focusIndicator}></div>
-                <div
-                    className={classNames([
-                        commonClasses.selectionIndicator,
-                        classes.listFileEntrySelection,
-                    ])}
-                ></div>
-                <div className={classes.listFileEntryIcon}>
-                    <ChonkyIcon
-                        icon={entryState.icon}
-                        spin={entryState.iconSpin}
-                        fixedWidth={true}
-                    />
-                </div>
-                <div
-                    className={classes.listFileEntryName}
-                    title={file ? file.name : undefined}
-                >
-                    <FileEntryName file={file} />
-                </div>
-                <div className={classes.listFileEntryProperty}>
-                    {file ? (
-                        fileModDateString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={5} maxLength={15} />
-                    )}
-                </div>
-                <div className={classes.listFileEntryProperty}>
-                    {file ? (
-                        fileSizeString ?? <span>—</span>
-                    ) : (
-                        <TextPlaceholder minLength={10} maxLength={20} />
-                    )}
-                </div>
+    const { fileModDateString, fileSizeString } = useLocalizedFileEntryStrings(file);
+    const styleState = useMemo<StyleState>(
+        () => ({
+            entryState,
+        }),
+        [entryState]
+    );
+    const classes = useStyles(styleState);
+    const commonClasses = useCommonEntryStyles(entryState);
+    const ChonkyIcon = useContext(ChonkyIconContext);
+    const fileEntryHtmlProps = useFileEntryHtmlProps(file);
+    return (
+        <div className={classes.listFileEntry} {...fileEntryHtmlProps}>
+            <div className={commonClasses.focusIndicator}></div>
+            <div
+                className={classNames([
+                    commonClasses.selectionIndicator,
+                    classes.listFileEntrySelection,
+                ])}
+            ></div>
+            <div className={classes.listFileEntryIcon}>
+                <ChonkyIcon
+                    icon={entryState.icon}
+                    spin={entryState.iconSpin}
+                    fixedWidth={true}
+                />
             </div>
-        );
-    }
-);
+            <div
+                className={classes.listFileEntryName}
+                title={file ? file.name : undefined}
+            >
+                <FileEntryName file={file} />
+            </div>
+            <div className={classes.listFileEntryProperty}>
+                {file ? (
+                    (fileModDateString ?? <span>—</span>)
+                ) : (
+                    <TextPlaceholder minLength={5} maxLength={15} />
+                )}
+            </div>
+            <div className={classes.listFileEntryProperty}>
+                {file ? (
+                    (fileSizeString ?? <span>—</span>)
+                ) : (
+                    <TextPlaceholder minLength={10} maxLength={20} />
+                )}
+            </div>
+        </div>
+    );
+};
 
-const useStyles = makeLocalChonkyStyles(theme => ({
+const useStyles = makeLocalChonkyStyles((theme) => ({
     listFileEntry: {
         boxShadow: `inset ${theme.palette.divider} 0 -1px 0`,
         fontSize: theme.listFileEntry.fontSize,

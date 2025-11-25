@@ -16,7 +16,7 @@
     "scripts": {
         "start": "tsup --watch",
         "dev": "vite",
-        "build": "tsup && tsc -b",
+        "build": "tsup",
         "test": "vitest",
         "lint": "eslint src",
         "prepare": "tsup && tsc -b",

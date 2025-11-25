@@ -7,7 +7,7 @@
 import Menu from '@mui/material/Menu';
 import React, { useCallback, useMemo } from 'react';
 
-import { FileActionGroup } from '../../types/action-menus.types';
+import type { FileActionGroup } from '../../types/action-menus.types';
 import { useLocalizedFileActionGroup } from '../../util/i18n';
 import { important, makeGlobalChonkyStyles } from '../../util/styles';
 import { ToolbarButton } from './ToolbarButton';
@@ -15,7 +15,7 @@ import { SmartToolbarDropdownButton } from './ToolbarDropdownButton';
 
 export type ToolbarDropdownProps = FileActionGroup;
 
-export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo(props => {
+export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo((props) => {
     const { name, fileActionIds } = props;
     const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
 
@@ -27,7 +27,7 @@ export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo(props 
 
     const menuItemComponents = useMemo(
         () =>
-            fileActionIds.map(id => (
+            fileActionIds.map((id) => (
                 <SmartToolbarDropdownButton
                     key={`menu-item-${id}`}
                     fileActionId={id}

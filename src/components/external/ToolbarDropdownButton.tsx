@@ -8,7 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useCallback, useContext } from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
@@ -58,7 +58,7 @@ export const ToolbarDropdownButton = React.forwardRef(
     }
 );
 
-const useStyles = makeGlobalChonkyStyles(theme => ({
+const useStyles = makeGlobalChonkyStyles((theme) => ({
     baseButton: {
         lineHeight: important(theme.toolbar.lineHeight),
         height: important(theme.toolbar.size),

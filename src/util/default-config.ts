@@ -1,5 +1,5 @@
 import { ChonkyActions } from '../action-definitions/index';
-import { FileBrowserProps } from '../types/file-browser.types';
+import type { FileBrowserProps } from '../types/file-browser.types';
 import { ChonkyIconFA } from './icon-helper';
 
 export type ChonkyConfig = Pick<

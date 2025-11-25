@@ -1,17 +1,17 @@
-import { Nilable, Nullable } from 'tsdef';
+import type { Nilable, Nullable } from 'tsdef';
 
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { GenericFileActionHandler } from '../types/action-handler.types';
-import { FileActionMenuItem } from '../types/action-menus.types';
-import { FileAction, FileActionMap } from '../types/action.types';
-import { ContextMenuConfig } from '../types/context-menu.types';
-import { FileViewConfig } from '../types/file-view.types';
-import { FileArray, FileIdTrueMap, FileMap } from '../types/file.types';
-import { OptionMap } from '../types/options.types';
-import { RootState } from '../types/redux.types';
+import type { GenericFileActionHandler } from '../types/action-handler.types';
+import type { FileActionMenuItem } from '../types/action-menus.types';
+import type { FileAction, FileActionMap } from '../types/action.types';
+import type { ContextMenuConfig } from '../types/context-menu.types';
+import type { FileViewConfig } from '../types/file-view.types';
+import type { FileArray, FileIdTrueMap, FileMap } from '../types/file.types';
+import type { OptionMap } from '../types/options.types';
+import type { RootState } from '../types/redux.types';
 import { SortOrder } from '../types/sort.types';
-import { ThumbnailGenerator } from '../types/thumbnails.types';
+import type { ThumbnailGenerator } from '../types/thumbnails.types';
 import { FileHelper } from '../util/file-helper';
 import { sanitizeInputArray } from './files-transforms';
 import { initialRootState } from './state';
@@ -31,8 +31,8 @@ const reducers = {
     },
     setFileActions(state: RootState, action: PayloadAction<FileAction[]>) {
         const fileActionMap: FileActionMap = {};
-        action.payload.map(a => (fileActionMap[a.id] = a));
-        const fileIds = action.payload.map(a => a.id);
+        action.payload.map((a) => (fileActionMap[a.id] = a));
+        const fileIds = action.payload.map((a) => a.id);
 
         state.fileActionMap = fileActionMap as FileMap;
         state.fileActionIds = fileIds;
@@ -63,11 +63,11 @@ const reducers = {
         state.filesErrorMessages = errorMessages;
 
         const fileMap: FileMap = {};
-        files.forEach(f => {
+        files.forEach((f) => {
             if (f) fileMap[f.id] = f;
         });
-        const fileIds = files.map(f => (f ? f.id : null));
-        const cleanFileIds = fileIds.filter(f => !!f) as string[];
+        const fileIds = files.map((f) => (f ? f.id : null));
+        const cleanFileIds = fileIds.filter((f) => !!f) as string[];
 
         state.fileMap = fileMap;
         state.fileIds = fileIds;
@@ -101,8 +101,8 @@ const reducers = {
     },
     selectAllFiles(state: RootState) {
         state.fileIds
-            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]!))
-            .map(id => (id ? (state.selectionMap[id] = true) : null));
+            .filter((id) => id && FileHelper.isSelectable(state.fileMap[id]!))
+            .map((id) => (id ? (state.selectionMap[id] = true) : null));
     },
     selectFiles(
         state: RootState,
@@ -111,8 +111,8 @@ const reducers = {
         if (state.disableSelection) return;
         if (action.payload.reset) state.selectionMap = {};
         action.payload.fileIds
-            .filter(id => id && FileHelper.isSelectable(state.fileMap[id]!))
-            .map(id => (state.selectionMap[id] = true));
+            .filter((id) => id && FileHelper.isSelectable(state.fileMap[id]!))
+            .map((id) => (state.selectionMap[id] = true));
     },
     toggleSelection(
         state: RootState,

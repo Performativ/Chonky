@@ -1,10 +1,10 @@
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { selectFocusSearchInput } from '../redux/selectors';
 import { thunkRequestFileAction } from '../redux/thunks/dispatchers.thunks';
-import { FileSelectionTransform } from '../types/action.types';
+import type { FileSelectionTransform } from '../types/action.types';
 import { FileViewMode } from '../types/file-view.types';
-import { FileData } from '../types/file.types';
+import type { FileData } from '../types/file.types';
 import { ChonkyIconName } from '../types/icons.types';
 import { FileHelper } from '../util/file-helper';
 import { defineFileAction } from '../util/helpers';
@@ -53,7 +53,7 @@ export const DefaultActions = {
         },
         selectionTransform: (({ fileIds, hiddenFileIds }) => {
             const newSelection = new Set<string>();
-            fileIds.map(fileId => {
+            fileIds.map((fileId) => {
                 // We don't need to check if file is selectable because Chonky does
                 // it own checks internally.
                 if (!hiddenFileIds.has(fileId)) newSelection.add(fileId);
@@ -132,7 +132,8 @@ export const DefaultActions = {
      */
     SortFilesByName: defineFileAction({
         id: 'sort_files_by_name',
-        sortKeySelector: (file: Nullable<FileData>) => (file ? file.name.toLowerCase() : undefined),
+        sortKeySelector: (file: Nullable<FileData>) =>
+            file ? file.name.toLowerCase() : undefined,
         button: {
             name: 'Sort by name',
             toolbar: true,
@@ -156,7 +157,8 @@ export const DefaultActions = {
      */
     SortFilesByDate: defineFileAction({
         id: 'sort_files_by_date',
-        sortKeySelector: (file: Nullable<FileData>) => (file ? file.modDate : undefined),
+        sortKeySelector: (file: Nullable<FileData>) =>
+            file ? file.modDate : undefined,
         button: {
             name: 'Sort by date',
             toolbar: true,

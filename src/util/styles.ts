@@ -1,7 +1,7 @@
-import { Theme as MuiTheme } from '@mui/material/styles';
+import type { Theme as MuiTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createUseStyles } from 'react-jss';
-import { DeepPartial } from 'tsdef';
+import type { DeepPartial } from 'tsdef';
 
 export const lightTheme = {
     colors: {
@@ -130,7 +130,7 @@ export const makeGlobalChonkyStyles = <C extends string = string>(
         const localStyles = makeStyles(theme as any);
         const globalStyles = {};
         const localSelectors = Object.keys(localStyles);
-        localSelectors.map(localSelector => {
+        localSelectors.map((localSelector) => {
             const globalSelector = `chonky-${localSelector}`;
             const jssSelector = `@global .${globalSelector}`;
             // @ts-ignore
@@ -146,7 +146,7 @@ export const makeGlobalChonkyStyles = <C extends string = string>(
     return (...args: any[]): any => {
         const styles = useStyles(...args);
         const classes = {};
-        Object.keys(selectorMapping).map(localSelector => {
+        Object.keys(selectorMapping).map((localSelector) => {
             // @ts-ignore
             classes[localSelector] = selectorMapping[localSelector];
         });

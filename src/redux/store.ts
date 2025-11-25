@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { configureStore } from '@reduxjs/toolkit';
 
-import { RootState } from '../types/redux.types';
+import type { RootState } from '../types/redux.types';
 import { useStaticValue } from '../util/hooks-helpers';
 import { rootReducer } from './reducers';
 import { initialRootState } from './state';
@@ -19,7 +19,7 @@ export const useChonkyStore = (chonkyInstanceId: string) => {
         return configureStore({
             preloadedState: preloadedState as any,
             reducer: rootReducer,
-            middleware: getDefaultMiddleware =>
+            middleware: (getDefaultMiddleware) =>
                 getDefaultMiddleware({
                     serializableCheck: false,
                 }),
@@ -53,13 +53,9 @@ export const useDTE = <Args extends Array<any>>(
     ...selectorParams: Args
 ) => {
     const dispatch = useDispatch();
-    useEffect(
-        () => {
-            dispatch(actionCreator(...selectorParams));
-        },
-        // eslint-disable-next-line
-        [dispatch, actionCreator, ...selectorParams]
-    );
+    useEffect(() => {
+        dispatch(actionCreator(...selectorParams));
+    }, [dispatch, actionCreator, ...selectorParams]);
 };
 
 export const usePropReduxUpdate = <Payload extends any>(

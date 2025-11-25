@@ -6,10 +6,10 @@
 
 import React, { useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Nilable, Nullable } from 'tsdef';
+import type { Nilable, Nullable } from 'tsdef';
 
 import { selectDoubleClickDelay } from '../../redux/selectors';
-import {
+import type {
     KeyboardClickEvent,
     KeyboardClickEventHandler,
     MouseClickEvent,
@@ -33,7 +33,6 @@ export const useClickHandler = (
                 altKey: event.altKey,
                 ctrlKey: event.ctrlKey || event.metaKey,
                 shiftKey: event.shiftKey,
-
             };
 
             counter.current.clickCount++;
