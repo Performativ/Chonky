@@ -1,13 +1,13 @@
-import { ElementType, UIEvent } from 'react';
-import { Nullable } from 'tsdef';
+import type { ElementType, UIEvent } from 'react';
+import type { Nullable } from 'tsdef';
 
-import { ChonkyActions } from '../action-definitions/index';
-import { GenericFileActionHandler } from './action-handler.types';
-import { FileAction } from './action.types';
-import { FileArray } from './file.types';
-import { I18nConfig } from './i18n.types';
-import { ChonkyIconProps } from './icons.types';
-import { ThumbnailGenerator } from './thumbnails.types';
+import type { ChonkyActions } from '../action-definitions/index';
+import type { GenericFileActionHandler } from './action-handler.types';
+import type { FileAction } from './action.types';
+import type { FileArray } from './file.types';
+import type { I18nConfig } from './i18n.types';
+import type { ChonkyIconProps } from './icons.types';
+import type { ThumbnailGenerator } from './thumbnails.types';
 
 /**
  * File browser methods exposed to developers via the `FileBrowser` ref.
@@ -41,7 +41,7 @@ export interface FileBrowserHandle {
     ): Promise<void>;
 }
 
-export type ChonkyActionUnion = typeof ChonkyActions[keyof typeof ChonkyActions];
+export type ChonkyActionUnion = (typeof ChonkyActions)[keyof typeof ChonkyActions];
 
 /**
  * Props for the `FileBrowser` component that is exposed to library users.

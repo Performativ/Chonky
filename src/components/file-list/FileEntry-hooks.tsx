@@ -1,5 +1,5 @@
 import {
-    HTMLProps,
+    type HTMLProps,
     useCallback,
     useContext,
     useEffect,
@@ -8,13 +8,13 @@ import {
     useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Nullable, Undefinable } from 'tsdef';
+import type { Nullable, Undefinable } from 'tsdef';
 
 import { ChonkyActions } from '../../action-definitions/index';
 import { useThunkDispatch } from '../../redux/helpers';
 import { selectThumbnailGenerator } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
-import { FileData } from '../../types/file.types';
+import type { FileData } from '../../types/file.types';
 import { ChonkyIconName } from '../../types/icons.types';
 import { FileHelper } from '../../util/file-helper';
 import {
@@ -25,8 +25,8 @@ import {
 } from '../../util/icon-helper';
 import { Logger } from '../../util/logger';
 import { TextPlaceholder } from '../external/TextPlaceholder';
-import { KeyboardClickEvent, MouseClickEvent } from '../internal/ClickableWrapper';
-import { FileEntryState } from './GridEntryPreview';
+import type { KeyboardClickEvent, MouseClickEvent } from '../internal/ClickableWrapper';
+import type { FileEntryState } from './GridEntryPreview';
 
 export const useFileEntryHtmlProps = (
     file: Nullable<FileData>

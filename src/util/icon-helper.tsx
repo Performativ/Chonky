@@ -5,9 +5,9 @@
  */
 
 import ExactTrie from 'exact-trie';
-import React, { createContext, ElementType, useMemo } from 'react';
+import React, { createContext, type ElementType, useMemo } from 'react';
 import cn from 'classnames';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import {
     LucideArchive,
@@ -46,7 +46,7 @@ import {
     LucideMusic,
     LucideOctagonAlert,
     LucidePackage,
-    LucideProps,
+    type LucideProps,
     LucideScale,
     LucideSearch,
     LucideShare2,
@@ -64,8 +64,12 @@ import {
     LucideX,
 } from 'lucide-react';
 import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlaceholder';
-import { FileData } from '../types/file.types';
-import { ChonkyIconName, ChonkyIconProps, FileIconData } from '../types/icons.types';
+import type { FileData } from '../types/file.types';
+import {
+    ChonkyIconName,
+    type ChonkyIconProps,
+    type FileIconData,
+} from '../types/icons.types';
 import { makeLocalChonkyStyles } from './styles';
 
 export const ChonkyIconContext =

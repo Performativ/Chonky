@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import React, { ReactElement, useEffect, useMemo } from 'react';
+import React, { type ReactElement, useEffect, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 

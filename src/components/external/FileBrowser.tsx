@@ -1,14 +1,17 @@
 import { createTheme, ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 
 import merge from 'deepmerge';
-import React, { ReactNode, useMemo } from 'react';
+import React, { type ReactNode, useMemo } from 'react';
 import { IntlProvider } from 'react-intl';
 import { ThemeProvider } from 'react-jss';
 import { Provider as ReduxProvider } from 'react-redux';
 import shortid from 'shortid';
 
 import { useChonkyStore } from '../../redux/store';
-import { FileBrowserHandle, FileBrowserProps } from '../../types/file-browser.types';
+import type {
+    FileBrowserHandle,
+    FileBrowserProps,
+} from '../../types/file-browser.types';
 import { defaultConfig } from '../../util/default-config';
 import { getValueOrFallback } from '../../util/helpers';
 import { useStaticValue } from '../../util/hooks-helpers';

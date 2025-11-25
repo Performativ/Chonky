@@ -6,7 +6,7 @@
 
 import React from 'react';
 
-import { ChonkyIconProps } from '../../types/icons.types';
+import type { ChonkyIconProps } from '../../types/icons.types';
 
 export const ChonkyIconPlaceholder: React.FC<ChonkyIconProps> = () => {
     // This component should not be rendered unless the user has misconfigured Chonky

@@ -1,24 +1,31 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "rootDir": "src",
-        "outDir": "dist",
-        "declaration": true,
-        "declarationMap": true,
-        "esModuleInterop": true,
-        "incremental": false,
-        "allowSyntheticDefaultImports": true,
-        "isolatedModules": true,
-        "lib": ["es2022", "DOM", "DOM.Iterable"],
-        "moduleDetection": "force",
-        "noUncheckedIndexedAccess": true,
-        "resolveJsonModule": true,
-        "skipLibCheck": true,
-        "strict": true,
-        "target": "ES2022",
-        "jsx": "react-jsx",
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
         "module": "ESNext",
-        "moduleResolution": "bundler"
+        "skipLibCheck": true,
+
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "verbatimModuleSyntax": true,
+        "moduleDetection": "force",
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+
+        /* Linting */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "erasableSyntaxOnly": false,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": true
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
+    "exclude": ["node_modules", "dist"],
+    "include": ["src"]
 }

@@ -6,7 +6,7 @@
 
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
-import React, { ReactElement, useMemo } from 'react';
+import React, { type ReactElement, useMemo } from 'react';
 
 import { ChonkyActions } from '../../action-definitions/index';
 import { important, makeGlobalChonkyStyles } from '../../util/styles';
@@ -52,7 +52,7 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
     );
 });
 
-const useStyles = makeGlobalChonkyStyles(theme => ({
+const useStyles = makeGlobalChonkyStyles((theme) => ({
     navbarWrapper: {
         paddingBottom: theme.margins.rootLayoutMargin,
     },

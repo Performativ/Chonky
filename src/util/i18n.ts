@@ -1,6 +1,6 @@
 import filesize from 'filesize';
 import { createContext, useContext, useMemo } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { type IntlShape, useIntl } from 'react-intl';
 import type { Nullable, Undefinable } from 'tsdef';
 
 import type { FileAction } from '../types/action.types';
@@ -15,7 +15,7 @@ export const I18nNamespace = {
     FileContextMenu: 'contextMenu',
     FileActions: 'actions',
     FileActionGroups: 'actionGroups',
-} as const
+} as const;
 
 export type I18nNamespace = (typeof I18nNamespace)[keyof typeof I18nNamespace];
 

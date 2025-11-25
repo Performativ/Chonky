@@ -1,5 +1,5 @@
 import { ChonkyActions } from '../action-definitions/index';
-import { RootState } from '../types/redux.types';
+import type { RootState } from '../types/redux.types';
 import { SortOrder } from '../types/sort.types';
 
 export const initialRootState: RootState = {

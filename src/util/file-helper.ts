@@ -1,6 +1,6 @@
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
-import { FileData } from '../types/file.types';
+import type { FileData } from '../types/file.types';
 import { Logger } from './logger';
 
 export class FileHelper {

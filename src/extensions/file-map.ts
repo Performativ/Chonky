@@ -5,9 +5,9 @@
 import { useCallback, useMemo, useState } from 'react';
 
 import { ChonkyActions } from '../action-definitions';
-import { FileActionData } from '../types/action-handler.types';
-import { FileAction } from '../types/action.types';
-import { FileArray, FileData } from '../types/file.types';
+import type { FileActionData } from '../types/action-handler.types';
+import type { FileAction } from '../types/action.types';
+import type { FileArray, FileData } from '../types/file.types';
 import { FileHelper } from '../util/file-helper';
 
 export interface CustomFileData extends FileData {
@@ -70,13 +70,13 @@ export const useFileMapMethods = <FT extends CustomFileData>(
     }, [baseFileMap, initialFolderId]);
     const moveFiles = useCallback(
         (files: FT[], source: FT, destination: FT) =>
-            setFileMap(currentFileMap => {
+            setFileMap((currentFileMap) => {
                 const newFileMap = { ...currentFileMap };
-                const moveFileIds = new Set(files.map(f => f.id));
+                const moveFileIds = new Set(files.map((f) => f.id));
 
                 // Delete files from their source folder.
                 const newSourceChildrenIds = source.childrenIds!.filter(
-                    id => !moveFileIds.has(id)
+                    (id) => !moveFileIds.has(id)
                 );
                 newFileMap[source.id] = {
                     ...source,
@@ -87,7 +87,7 @@ export const useFileMapMethods = <FT extends CustomFileData>(
                 // Add the files to their destination folder.
                 const newDestinationChildrenIds = [
                     ...destination.childrenIds!,
-                    ...files.map(f => f.id),
+                    ...files.map((f) => f.id),
                 ];
                 newFileMap[destination.id] = {
                     ...destination,
@@ -97,7 +97,7 @@ export const useFileMapMethods = <FT extends CustomFileData>(
 
                 // Finally, update the parent folder ID on the files from source folder
                 // ID to the destination folder ID.
-                files.forEach(file => {
+                files.forEach((file) => {
                     newFileMap[file.id] = {
                         ...file,
                         parentId: destination.id,

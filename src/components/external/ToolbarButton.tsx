@@ -6,7 +6,7 @@
 
 import Button from '@mui/material/Button';
 import React, { useContext } from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';

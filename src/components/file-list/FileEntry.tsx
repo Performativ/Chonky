@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { selectFileData, selectIsFileSelected } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
-import { FileEntryProps } from '../../types/file-list.types';
+import type { FileEntryProps } from '../../types/file-list.types';
 import { FileViewMode } from '../../types/file-view.types';
 import { FileHelper } from '../../util/file-helper';
 import { makeGlobalChonkyStyles } from '../../util/styles';
-import { ClickableWrapper, ClickableWrapperProps } from '../internal/ClickableWrapper';
+import {
+    ClickableWrapper,
+    type ClickableWrapperProps,
+} from '../internal/ClickableWrapper';
 import { CompactEntry } from './CompactEntry';
 import { useFileClickHandlers } from './FileEntry-hooks';
 import { GridEntry } from './GridEntry';

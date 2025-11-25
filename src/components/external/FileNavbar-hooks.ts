@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { ChonkyActions } from '../../action-definitions/index';
 import { useThunkDispatch } from '../../redux/helpers';
 import { selectFolderChain } from '../../redux/selectors';
 import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
-import { FileData } from '../../types/file.types';
+import type { FileData } from '../../types/file.types';
 import { FileHelper } from '../../util/file-helper';
 
 export interface FolderChainItem {

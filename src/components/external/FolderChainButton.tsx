@@ -8,7 +8,7 @@ import React from 'react';
 
 import { ChonkyIconName } from '../../types/icons.types';
 import { important, makeLocalChonkyStyles } from '../../util/styles';
-import { FolderChainItem } from './FileNavbar-hooks';
+import type { FolderChainItem } from './FileNavbar-hooks';
 import { ToolbarButton } from './ToolbarButton';
 import classNames from 'classnames';
 
@@ -48,7 +48,7 @@ export const FolderChainButton: React.FC<FolderChainButtonProps> = React.memo(
     }
 );
 
-const useStyles = makeLocalChonkyStyles(theme => ({
+const useStyles = makeLocalChonkyStyles((theme) => ({
     buttonContainer: {
         position: 'relative',
     },

@@ -14,7 +14,10 @@ import {
     thunkUpdateDefaultFileViewActionId,
     thunkUpdateRawFileActions,
 } from '../../redux/thunks/file-actions.thunks';
-import { FileBrowserHandle, FileBrowserProps } from '../../types/file-browser.types';
+import type {
+    FileBrowserHandle,
+    FileBrowserProps,
+} from '../../types/file-browser.types';
 import { defaultConfig } from '../../util/default-config';
 import { useFileBrowserHandle } from '../../util/file-browser-handle';
 import { getValueOrFallback } from '../../util/helpers';

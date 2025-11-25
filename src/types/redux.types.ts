@@ -1,17 +1,17 @@
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
-import { Action, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit';
+import type { Action, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit';
 
-import { GenericFileActionHandler } from './action-handler.types';
-import { FileActionMenuItem } from './action-menus.types';
-import { FileAction, FileActionMap } from './action.types';
-import { ContextMenuConfig } from './context-menu.types';
-import { FileViewConfig } from './file-view.types';
-import { FileArray, FileIdTrueMap, FileMap } from './file.types';
-import { OptionMap } from './options.types';
-import { FileSelection } from './selection.types';
+import type { GenericFileActionHandler } from './action-handler.types';
+import type { FileActionMenuItem } from './action-menus.types';
+import type { FileAction, FileActionMap } from './action.types';
+import type { ContextMenuConfig } from './context-menu.types';
+import type { FileViewConfig } from './file-view.types';
+import type { FileArray, FileIdTrueMap, FileMap } from './file.types';
+import type { OptionMap } from './options.types';
+import type { FileSelection } from './selection.types';
 import { SortOrder } from './sort.types';
-import { ThumbnailGenerator } from './thumbnails.types';
+import type { ThumbnailGenerator } from './thumbnails.types';
 
 export type RootState = {
     instanceId: string;

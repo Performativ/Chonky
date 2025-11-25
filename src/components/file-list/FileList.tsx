@@ -1,16 +1,15 @@
-import React, { UIEvent, useCallback, useContext } from 'react';
+import React, { type UIEvent, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
+import classNames from 'classnames';
 import { ChonkyActions } from '../../action-definitions/index';
 import { selectFileViewConfig, selectors } from '../../redux/selectors';
 import { FileViewMode } from '../../types/file-view.types';
-import { ChonkyIconContext } from '../../util/icon-helper';
 import { makeGlobalChonkyStyles, makeLocalChonkyStyles } from '../../util/styles';
 import { FileListEmpty } from './FileListEmpty';
 import { GridContainer } from './GridContainer';
 import { ListContainer } from './ListContainer';
-import classNames from 'classnames';
 
 export interface FileListProps {
     onScroll?: (e: UIEvent<HTMLDivElement>) => void;
@@ -41,7 +40,6 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
         [displayFileIds, viewConfig]
     );
 
-    const ChonkyIcon = useContext(ChonkyIconContext);
     return (
         <div
             onScroll={onScroll}
@@ -57,7 +55,7 @@ export const FileList: React.FC<FileListProps> = React.memo((props: FileListProp
 });
 FileList.displayName = 'FileList';
 
-const useLocalStyles = makeLocalChonkyStyles(theme => ({
+const useLocalStyles = makeLocalChonkyStyles(() => ({
     fileListWrapper: {
         minHeight: ChonkyActions.EnableGridView.fileViewConfig.entryHeight + 2,
         background: () => 'none',

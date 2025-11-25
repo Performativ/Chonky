@@ -1,4 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { ChonkyDispatch } from '../types/redux.types';
+import type { ChonkyDispatch } from '../types/redux.types';
 
 export const useThunkDispatch = () => useDispatch<ChonkyDispatch>();

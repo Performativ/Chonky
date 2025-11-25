@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { Nullable } from 'tsdef';
+import type { Nullable } from 'tsdef';
 
 import { ChonkyActions } from '../action-definitions/index';
 import {

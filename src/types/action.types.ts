@@ -1,11 +1,11 @@
-import { MaybePromise, Nullable } from 'tsdef';
+import type { MaybePromise, Nullable } from 'tsdef';
 
-import { FileActionState } from './action-handler.types';
-import { FileViewConfig } from './file-view.types';
-import { FileFilter, FileMap } from './file.types';
-import { ChonkyIconName } from './icons.types';
-import { ChonkyDispatch, RootState } from './redux.types';
-import { FileSortKeySelector } from './sort.types';
+import type { FileActionState } from './action-handler.types';
+import type { FileViewConfig } from './file-view.types';
+import type { FileFilter, FileMap } from './file.types';
+import type { ChonkyIconName } from './icons.types';
+import type { ChonkyDispatch, RootState } from './redux.types';
+import type { FileSortKeySelector } from './sort.types';
 
 export interface FileAction {
     /**
@@ -122,8 +122,8 @@ export type FileActionEffect<Action extends FileAction = any> = (data: {
 export type FileActionMap = { [actonId: string]: FileAction };
 
 export enum CustomVisibilityState {
-    Hidden, 
-    Disabled, 
+    Hidden,
+    Disabled,
     Default,
-    Active
-};
+    Active,
+}

@@ -1,21 +1,21 @@
 import sort from 'fast-sort';
 import FuzzySearch from 'fuzzy-search';
-import { Nilable, Nullable } from 'tsdef';
+import type { Nilable, Nullable } from 'tsdef';
 
 import { createSelector } from '@reduxjs/toolkit';
 
 import { OptionIds } from '../action-definitions/option-ids';
-import { FileAction, FileActionMap } from '../types/action.types';
-import {
+import type { FileAction, FileActionMap } from '../types/action.types';
+import type {
     FileArray,
     FileData,
     FileFilter,
     FileIdTrueMap,
     FileMap,
 } from '../types/file.types';
-import { OptionMap } from '../types/options.types';
-import { RootState } from '../types/redux.types';
-import { FileSortKeySelector, SortOrder } from '../types/sort.types';
+import type { OptionMap } from '../types/options.types';
+import type { RootState } from '../types/redux.types';
+import { type FileSortKeySelector, SortOrder } from '../types/sort.types';
 import { FileHelper } from '../util/file-helper';
 
 // Raw selectors
@@ -66,20 +66,19 @@ export const selectIsFileSelected = (fileId: Nullable<string>) => (state: RootSt
     !!fileId && !!selectSelectionMap(state)[fileId];
 export const selectSelectedFiles = (state: RootState) => {
     const fileMap = selectFileMap(state);
-    return Object.keys(selectSelectionMap(state)).map(id => fileMap[id]!);
+    return Object.keys(selectSelectionMap(state)).map((id) => fileMap[id]!);
 };
-export const selectSelectedFilesForAction = (fileActionId: string) => (
-    state: RootState
-) => {
-    const { fileActionMap } = state;
-    const action = fileActionMap[fileActionId];
-    if (!action || !action.requiresSelection) return undefined;
+export const selectSelectedFilesForAction =
+    (fileActionId: string) => (state: RootState) => {
+        const { fileActionMap } = state;
+        const action = fileActionMap[fileActionId];
+        if (!action || !action.requiresSelection) return undefined;
 
-    return getSelectedFiles(state, action.fileFilter);
-};
-export const selectSelectedFilesForActionCount = (fileActionId: string) => (
-    state: RootState
-) => getSelectedFilesForAction(state, fileActionId)?.length;
+        return getSelectedFiles(state, action.fileFilter);
+    };
+export const selectSelectedFilesForActionCount =
+    (fileActionId: string) => (state: RootState) =>
+        getSelectedFilesForAction(state, fileActionId)?.length;
 export const selectDisableSelection = (state: RootState) => state.disableSelection;
 
 export const selectFileViewConfig = (state: RootState) => state.fileViewConfig;
@@ -126,7 +125,7 @@ const makeGetAction = (fileActionSelector: (state: RootState) => Nullable<string
                 : null
     );
 const makeGetOptionValue = (optionId: string, defaultValue: any = undefined) =>
-    createSelector([getOptionMap], optionMap => {
+    createSelector([getOptionMap], (optionMap) => {
         const value = optionMap[optionId];
         if (value === undefined) {
             return defaultValue;
@@ -137,7 +136,9 @@ const makeGetFiles = (fileIdsSelector: (state: RootState) => Nullable<string>[])
     createSelector(
         [getFileMap, fileIdsSelector],
         (fileMap, fileIds): FileArray =>
-            fileIds.map(fileId => (fileId && fileMap[fileId] ? fileMap[fileId] : null))
+            fileIds.map((fileId) =>
+                fileId && fileMap[fileId] ? fileMap[fileId] : null
+            )
     );
 const getSortedFileIds = createSelector(
     [
@@ -154,9 +155,9 @@ const getSortedFileIds = createSelector(
             return fileIds;
         }
 
-        const prepareSortKeySelector = (selector: FileSortKeySelector) => (
-            file: Nullable<FileData>
-        ) => selector(file);
+        const prepareSortKeySelector =
+            (selector: FileSortKeySelector) => (file: Nullable<FileData>) =>
+                selector(file);
 
         const sortFunctions: {
             asc?: (file: FileData) => any;
@@ -181,19 +182,19 @@ const getSortedFileIds = createSelector(
         // We copy the array because `fast-sort` mutates it
         const sortedFileIds = sort([...files])
             .by(sortFunctions as any)
-            .map(file => (file ? file.id : null));
+            .map((file) => (file ? file.id : null));
         return sortedFileIds;
     }
 );
 const getSearcher = createSelector(
     [makeGetFiles(getCleanFileIds)],
-    cleanFiles =>
+    (cleanFiles) =>
         new FuzzySearch(cleanFiles as FileData[], ['name'], { caseSensitive: false })
 );
 const getSearchFilteredFileIds = createSelector(
     [getCleanFileIds, getSearchString, getSearcher],
     (cleanFileIds, searchString, searcher) =>
-        searchString ? searcher.search(searchString).map(f => f.id) : cleanFileIds
+        searchString ? searcher.search(searchString).map((f) => f.id) : cleanFileIds
 );
 const getHiddenFileIdMap = createSelector(
     [
@@ -204,7 +205,7 @@ const getHiddenFileIdMap = createSelector(
     (searchFilteredFileIds, cleanFiles, showHiddenFiles) => {
         const searchFilteredFileIdsSet = new Set(searchFilteredFileIds);
         const hiddenFileIdMap: any = {};
-        cleanFiles.forEach(file => {
+        cleanFiles.forEach((file) => {
             if (!file) return;
             else if (!searchFilteredFileIdsSet.has(file.id)) {
                 // Hidden by seach
@@ -221,7 +222,7 @@ const getDisplayFileIds = createSelector(
     [getSortedFileIds, getHiddenFileIdMap],
     /** Returns files that will actually be shown to the user. */
     (sortedFileIds, hiddenFileIdMap) =>
-        sortedFileIds.filter(id => !id || !hiddenFileIdMap[id])
+        sortedFileIds.filter((id) => !id || !hiddenFileIdMap[id])
 );
 const getLastClickIndex = createSelector(
     [_getLastClick, getSortedFileIds],
@@ -308,7 +309,7 @@ export const getSelectedFiles = (
 ) => {
     const { fileMap, selectionMap } = state;
 
-    const selectedFiles = Object.keys(selectionMap).map(id => fileMap[id]!);
+    const selectedFiles = Object.keys(selectionMap).map((id) => fileMap[id]!);
     const filteredSelectedFiles = filters.reduce(
         (prevFiles, filter) => (filter ? prevFiles.filter(filter) : prevFiles),
         selectedFiles
