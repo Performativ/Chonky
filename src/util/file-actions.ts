@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import type { Nullable } from 'tsdef';
 
 import { ChonkyActions } from '../action-definitions/index';
 import {
@@ -19,6 +18,7 @@ import { CustomVisibilityState } from '../types/action.types';
 import { SortOrder } from '../types/sort.types';
 import { FileHelper } from './file-helper';
 import { useThunkDispatch } from '../redux/helpers';
+import type { Nullable } from '../types/generic.types';
 
 export const useFileActionTrigger = (fileActionId: string) => {
     const dispatch = useThunkDispatch();

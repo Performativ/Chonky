@@ -5,11 +5,11 @@
  */
 
 import React from 'react';
-import type { Nullable } from 'tsdef';
 
 import type { FileData } from '../../types/file.types';
 import { makeLocalChonkyStyles } from '../../util/styles';
 import { useFileNameComponent, useModifierIconComponents } from './FileEntry-hooks';
+import type { Nullable } from '../../types/generic.types';
 
 export interface FileEntryNameProps {
     file: Nullable<FileData>;

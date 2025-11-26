@@ -8,7 +8,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useCallback, useContext } from 'react';
-import type { Nullable } from 'tsdef';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
@@ -19,6 +18,7 @@ import { useLocalizedFileActionStrings } from '../../util/i18n';
 import { ChonkyIconContext } from '../../util/icon-helper';
 import { important, makeGlobalChonkyStyles } from '../../util/styles';
 import classNames from 'classnames';
+import type { Nullable } from '../../types/generic.types';
 
 export interface ToolbarDropdownButtonProps {
     text: string;

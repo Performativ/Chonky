@@ -1,5 +1,3 @@
-import type { Nilable, Nullable } from 'tsdef';
-
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 import type { GenericFileActionHandler } from '../types/action-handler.types';
@@ -15,6 +13,7 @@ import type { ThumbnailGenerator } from '../types/thumbnails.types';
 import { FileHelper } from '../util/file-helper';
 import { sanitizeInputArray } from './files-transforms';
 import { initialRootState } from './state';
+import type { Nilable, Nullable } from '../types/generic.types';
 
 const reducers = {
     setExternalFileActionHandler(

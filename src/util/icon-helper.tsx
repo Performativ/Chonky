@@ -7,7 +7,6 @@
 import ExactTrie from 'exact-trie';
 import React, { createContext, type ElementType, useMemo } from 'react';
 import cn from 'classnames';
-import type { Nullable } from 'tsdef';
 
 import {
     LucideArchive,
@@ -71,6 +70,7 @@ import {
     type FileIconData,
 } from '../types/icons.types';
 import { makeLocalChonkyStyles } from './styles';
+import type { Nullable } from '../types/generic.types';
 
 export const ChonkyIconContext =
     createContext<ElementType<ChonkyIconProps>>(ChonkyIconPlaceholder);

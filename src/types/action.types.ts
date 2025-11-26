@@ -1,8 +1,7 @@
-import type { MaybePromise, Nullable } from 'tsdef';
-
 import type { FileActionState } from './action-handler.types';
 import type { FileViewConfig } from './file-view.types';
 import type { FileFilter, FileMap } from './file.types';
+import type { MaybePromisedValue, Nullable } from './generic.types';
 import type { ChonkyIconName } from './icons.types';
 import type { ChonkyDispatch, RootState } from './redux.types';
 import type { FileSortKeySelector } from './sort.types';
@@ -117,7 +116,7 @@ export type FileActionEffect<Action extends FileAction = any> = (data: {
     state: FileActionState<{}>; // extra state is empty on purpose
     reduxDispatch: ChonkyDispatch;
     getReduxState: () => RootState;
-}) => MaybePromise<undefined | boolean | void>;
+}) => MaybePromisedValue<undefined | boolean | void>;
 
 export type FileActionMap = { [actonId: string]: FileAction };
 

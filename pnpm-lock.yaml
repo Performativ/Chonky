@@ -116,9 +116,6 @@ importers:
       styled-components:
         specifier: ^5.3.0
         version: 5.3.11(@babel/core@7.28.5)(react-dom@19.2.0(react@19.2.0))(react-is@19.2.0)(react@19.2.0)
-      tsdef:
-        specifier: ^0.0.14
-        version: 0.0.14
     devDependencies:
       '@babel/core':
         specifier: ^7.13.10
@@ -3890,9 +3887,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  tsdef@0.0.14:
-    resolution: {integrity: sha512-UjMD4XKRWWFlFBfwKVQmGFT5YzW/ZaF8x6KpCDf92u9wgKeha/go3FU0e5WqDjXsCOdfiavCkfwfVHNDxRDGMA==}
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
@@ -8563,8 +8557,6 @@ snapshots:
   ts-pnp@1.2.0(typescript@5.9.3):
     optionalDependencies:
       typescript: 5.9.3
-
-  tsdef@0.0.14: {}
 
   tslib@2.8.1: {}
 

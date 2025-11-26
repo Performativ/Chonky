@@ -1,6 +1,6 @@
 import sort from 'fast-sort';
 import FuzzySearch from 'fuzzy-search';
-import type { Nilable, Nullable } from 'tsdef';
+import type { Nilable, Nullable } from '../types/generic.types';
 
 import { createSelector } from '@reduxjs/toolkit';
 

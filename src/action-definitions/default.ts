@@ -1,10 +1,9 @@
-import type { Nullable } from 'tsdef';
-
 import { selectFocusSearchInput } from '../redux/selectors';
 import { thunkRequestFileAction } from '../redux/thunks/dispatchers.thunks';
 import type { FileSelectionTransform } from '../types/action.types';
 import { FileViewMode } from '../types/file-view.types';
 import type { FileData } from '../types/file.types';
+import type { Nullable } from '../types/generic.types';
 import { ChonkyIconName } from '../types/icons.types';
 import { FileHelper } from '../util/file-helper';
 import { defineFileAction } from '../util/helpers';

@@ -1,7 +1,7 @@
 import type { Theme as MuiTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { createUseStyles } from 'react-jss';
-import type { DeepPartial } from 'tsdef';
+import type { DeepPartial } from '../types/generic.types';
 
 export const lightTheme = {
     colors: {

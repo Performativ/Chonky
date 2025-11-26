@@ -1,4 +1,4 @@
-import type { MaybePromise, Undefinable } from 'tsdef';
+import type { MaybePromisedValue, Undefinable } from '../../types/generic.types';
 
 import type { FileActionData, FileActionState } from '../../types/action-handler.types';
 import type { FileAction } from '../../types/action.types';
@@ -114,7 +114,7 @@ export const thunkRequestFileAction =
 
         // Apply the effect
         const effect = action.effect;
-        let maybeEffectPromise: MaybePromise<boolean | undefined> = undefined;
+        let maybeEffectPromise: MaybePromisedValue<boolean | undefined> = undefined;
         if (effect) {
             try {
                 maybeEffectPromise = effect({
@@ -123,7 +123,7 @@ export const thunkRequestFileAction =
                     state: actionState,
                     reduxDispatch: dispatch,
                     getReduxState: getState,
-                }) as MaybePromise<boolean | undefined>;
+                }) as MaybePromisedValue<boolean | undefined>;
             } catch (error) {
                 Logger.error(
                     `User-defined effect function for action ${action.id} threw an ` +

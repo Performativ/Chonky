@@ -1,6 +1,6 @@
-import type { Nullable } from 'tsdef';
 import type { FileAction } from '../types/action.types';
 import type { FileArray } from '../types/file.types';
+import type { Nullable } from '../types/generic.types';
 import { Logger } from '../util/logger';
 
 interface SanitizeFiles {
