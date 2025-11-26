@@ -50,6 +50,10 @@ export default defineConfig((options: Options) => ({
     /**
      * External dependencies (do not bundle these)
      */
-    external: Object.keys(pkg.dependencies),
+    external: [
+        ...Object.keys(pkg.dependencies),
+        ...Object.keys(pkg.peerDependencies),
+        ...Object.keys(pkg.devDependencies),
+    ],
     ...options,
 }));
