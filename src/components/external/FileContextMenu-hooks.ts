@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import type { Nullable } from 'tsdef';
 
 import { ChonkyActions } from '../../action-definitions/index';
 import { reduxActions } from '../../redux/reducers';
@@ -9,6 +8,7 @@ import { thunkRequestFileAction } from '../../redux/thunks/dispatchers.thunks';
 import { findElementAmongAncestors } from '../../util/helpers';
 import { useInstanceVariable } from '../../util/hooks-helpers';
 import { useThunkDispatch } from '../../redux/helpers';
+import type { Nullable } from '../../types/generic.types';
 
 export const findClosestChonkyFileId = (
     element: HTMLElement | any

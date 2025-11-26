@@ -1,4 +1,4 @@
-import type { AnyObject, Nullable } from 'tsdef';
+import type { Nullable } from '../types/generic.types';
 
 import type { FileAction } from './action.types';
 import type { FileData } from './file.types';
@@ -10,7 +10,9 @@ export type FileActionData<Action extends FileAction> = {
     state: FileActionState<Action['__extraStateType']>;
 };
 
-export type FileActionState<ExtraState extends object = AnyObject> = {
+export type FileActionState<
+    ExtraState extends Record<string, unknown> = Record<string, unknown>,
+> = {
     /**
      * The ID of the Chonky instance that dispatched this action. This is useful if
      * you're reusing the same action handler for multiple Chonky instances.

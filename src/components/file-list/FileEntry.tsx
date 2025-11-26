@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { Nullable } from 'tsdef';
 
 import { selectFileData, selectIsFileSelected } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
@@ -15,6 +14,7 @@ import { CompactEntry } from './CompactEntry';
 import { useFileClickHandlers } from './FileEntry-hooks';
 import { GridEntry } from './GridEntry';
 import { ListEntry } from './ListEntry';
+import type { Nullable } from '../../types/generic.types';
 
 export interface SmartFileEntryProps {
     fileId: Nullable<string>;

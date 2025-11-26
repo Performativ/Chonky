@@ -1,5 +1,5 @@
 import type { ElementType, UIEvent } from 'react';
-import type { Nullable } from 'tsdef';
+import type { Nullable } from './generic.types';
 
 import type { ChonkyActions } from '../action-definitions/index';
 import type { GenericFileActionHandler } from './action-handler.types';

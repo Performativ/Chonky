@@ -5,7 +5,6 @@
  */
 
 import React, { useCallback } from 'react';
-import type { AnyObjectWithStringKeys } from 'tsdef';
 
 import { useClickHandler, useKeyDownHandler } from './ClickableWrapper-hooks';
 
@@ -35,6 +34,14 @@ export interface ClickableWrapperProps {
     setFocused?: (focused: boolean) => void;
 }
 
+interface CompProps {
+    onFocus?: () => void;
+    onBlur?: () => void;
+    onClick?: (e: React.MouseEvent) => void;
+    onKeyDown?: (e: React.KeyboardEvent) => void;
+    tabIndex?: number;
+}
+
 export const ClickableWrapper: React.FC<ClickableWrapperProps> = (props) => {
     const {
         children,
@@ -49,7 +56,7 @@ export const ClickableWrapper: React.FC<ClickableWrapperProps> = (props) => {
     const handleClick = useClickHandler(onSingleClick, onDoubleClick);
     const handleKeyDown = useKeyDownHandler(onKeyboardClick);
 
-    const compProps: AnyObjectWithStringKeys = {
+    const compProps: CompProps = {
         onFocus: useCallback(() => setFocused && setFocused(true), [setFocused]),
         onBlur: useCallback(() => setFocused && setFocused(false), [setFocused]),
     };

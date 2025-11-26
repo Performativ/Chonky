@@ -6,7 +6,6 @@
 
 import Button from '@mui/material/Button';
 import React, { useContext } from 'react';
-import type { Nullable } from 'tsdef';
 
 import { selectFileActionData } from '../../redux/selectors';
 import { useParamSelector } from '../../redux/store';
@@ -17,6 +16,7 @@ import { useLocalizedFileActionStrings } from '../../util/i18n';
 import { ChonkyIconContext } from '../../util/icon-helper';
 import { important, makeGlobalChonkyStyles } from '../../util/styles';
 import classNames from 'classnames';
+import type { Nullable } from '../../types/generic.types';
 
 export interface ToolbarButtonProps {
     className?: string;

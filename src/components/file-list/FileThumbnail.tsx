@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-import type { Nullable } from 'tsdef';
 
 import { makeGlobalChonkyStyles } from '../../util/styles';
 import classNames from 'classnames';
+import type { Nullable } from '../../types/generic.types';
 
 export interface FileThumbnailProps {
     className: string;

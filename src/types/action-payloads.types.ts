@@ -1,6 +1,5 @@
-import type { Nullable } from 'tsdef';
-
 import type { FileData } from './file.types';
+import type { Nullable } from './generic.types';
 
 export interface MouseClickFilePayload {
     file: FileData;

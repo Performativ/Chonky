@@ -5,13 +5,13 @@
  */
 
 import React, { useContext } from 'react';
-import type { Nullable } from 'tsdef';
 
 import { ChonkyIconName } from '../../types/icons.types';
 import { ChonkyIconContext } from '../../util/icon-helper';
 import { important, makeLocalChonkyStyles } from '../../util/styles';
 import { FileThumbnail } from './FileThumbnail';
 import classNames from 'classnames';
+import type { Nullable } from '../../types/generic.types';
 
 export type FileEntryState = {
     childrenCount: Nullable<number>;

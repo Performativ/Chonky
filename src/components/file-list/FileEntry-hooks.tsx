@@ -8,7 +8,6 @@ import {
     useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import type { Nullable, Undefinable } from 'tsdef';
 
 import { ChonkyActions } from '../../action-definitions/index';
 import { useThunkDispatch } from '../../redux/helpers';
@@ -27,6 +26,7 @@ import { Logger } from '../../util/logger';
 import { TextPlaceholder } from '../external/TextPlaceholder';
 import type { KeyboardClickEvent, MouseClickEvent } from '../internal/ClickableWrapper';
 import type { FileEntryState } from './GridEntryPreview';
+import type { Nullable, Undefinable } from '../../types/generic.types';
 
 export const useFileEntryHtmlProps = (
     file: Nullable<FileData>

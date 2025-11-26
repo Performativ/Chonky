@@ -23,7 +23,7 @@
         "size": "size-limit",
         "analyze": "size-limit --why"
     },
-    "packageManager": "pnpm@10.20.0",
+    "packageManager": "pnpm@10.23.0",
     "peerDependencies": {
         "react": ">=18"
     },
@@ -104,8 +104,7 @@
         "redux": "^5.0.1",
         "redux-watch": "^1.2.0",
         "shortid": "^2.2.16",
-        "styled-components": "^5.3.0",
-        "tsdef": "^0.0.14"
+        "styled-components": "^5.3.0"
     },
     "homepage": "https://chonky.io/",
     "author": {

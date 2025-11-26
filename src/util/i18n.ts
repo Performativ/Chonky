@@ -1,7 +1,7 @@
 import filesize from 'filesize';
 import { createContext, useContext, useMemo } from 'react';
 import { type IntlShape, useIntl } from 'react-intl';
-import type { Nullable, Undefinable } from 'tsdef';
+import type { Nullable, Undefinable } from '../types/generic.types';
 
 import type { FileAction } from '../types/action.types';
 import type { FileData } from '../types/file.types';

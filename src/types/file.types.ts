@@ -1,4 +1,4 @@
-import type { Nullable, Undefinable } from 'tsdef';
+import type { Nullable, Undefinable } from './generic.types';
 
 import { ChonkyIconName } from './icons.types';
 
