@@ -1,0 +1,8 @@
+# Require Developer approval when changing code
+* @Performativ/web-ui-specialists @Performativ/tech-leads @Performativ/application-team
+
+# Require DevSecOps & Admin approval when changing code under /.github/ directory
+/.github/ @Performativ/devsecops
+
+# Require Admin approval when changing code under /src/tenants directory
+/src/tenants/ @Performativ/tech-leads
