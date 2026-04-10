@@ -90,7 +90,7 @@
         "filesize": "^6.1.0",
         "fuzzy-search": "^3.2.1",
         "hotkeys-js": "^3.8.3",
-        "lucide-react": "^0.552.0",
+        "lucide-react": "^1.8.0",
         "react-dnd": "16.0.1",
         "react-dnd-html5-backend": "16.0.1",
         "react-intl": "^7.1.14",
