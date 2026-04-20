@@ -1,0 +1,31 @@
+name: Chonky Install Sandbox
+on: [push]
+
+jobs:
+    test-install:
+        name: Test Chonky Git Install on Node ${{ matrix.node }} / ${{ matrix.os }}
+        strategy:
+            matrix:
+                node: ["18"]
+                os: [ubuntu-latest]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v5
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v4
+
+            - name: Setup Node ${{ matrix.node }}
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node }}
+                  cache: "pnpm"
+
+            - name: Test install Chonky from GitHub
+              run: |
+                  mkdir chonky-sandbox
+                  cd chonky-sandbox
+                  pnpm init
+                  pnpm add "https://github.com/Performativ/Chonky.git#main"
+                  ls node_modules/chonky
